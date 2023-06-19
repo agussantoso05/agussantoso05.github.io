@@ -1,15 +1,23 @@
+
 ---
 title: "Agus Santoso"
-description: |
-  Welcome to the website. I hope you enjoy it!
+image: "profile.png"
+links:
+  - label: '`r fontawesome::fa("linkedin", height = "25px")`'
+    url: "https://linkedin.com/in/agussantosooxo/"
+  - label: '`r fontawesome::fa("github", height = "25px")`'
+    url: "https://github.com/agussantoso05/"
+  - label: '`r fontawesome::fa("envelope", height = "25px")`'
+    url: "mailto:agus.santoso050899@gmail.com"
+  - label: Resume
+    url: "https://docs.google.com/document/d/1cJ7o479hkgRyoXG73UDFTYrKXh0GS_ZbT-17ayYWwKs/edit"
 site: distill::distill_website
+output:
+  postcards::trestles
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+# Welcome to my personal website!🤚
 
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
+I am a data analyst with an experience at Campaign a social-tech company.
 
-```
-
+>> *"**Presenting new information** is what I love to do the most."*
