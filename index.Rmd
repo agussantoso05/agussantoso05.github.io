@@ -20,4 +20,3 @@ output:
 
 I am a data analyst with an experience at Campaign a social-tech company.
 
->> *"**Presenting new information** is what I love to do the most."*

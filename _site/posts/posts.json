@@ -1,0 +1,19 @@
+[
+  {
+    "path": "posts/2023-06-21-project/",
+    "title": "personal website",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "agussantoso05",
+        "url": {}
+      }
+    ],
+    "date": "2023-06-21",
+    "categories": [],
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2023-06-21T11:59:02+07:00",
+    "input_file": {}
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2023-06-21T17:52:50+07:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Agus Santoso",
+      "author": [],
+      "contents": "\r\n\r\n          \r\n          \r\n          Agus Santoso\r\n          \r\n          \r\n          Home\r\n          About\r\n          Project\r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            \r\n              \r\n            \r\n              Agus Santoso\r\n            \r\n            \r\n              \r\n                \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        Resume\r\n                      \r\n                    \r\n                  \r\n                                  \r\n            \r\n          \r\n        \r\n        \r\n        \r\n          \r\n            \r\n            Welcome to my personal website!🤚\r\n            I am a data analyst with an experience at Campaign a\r\n            social-tech company.\r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n      \r\n        \r\n          \r\n            \r\n              \r\n            \r\n              Agus Santoso\r\n            \r\n            \r\n              \r\n                \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      Resume\r\n                    \r\n                  \r\n                                  \r\n              \r\n            \r\n            \r\n              \r\n              Welcome to my personal website!🤚\r\n              I am a data analyst with an experience at Campaign a\r\n              social-tech company.\r\n              \r\n            \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
+      "last_modified": "2023-06-21T17:53:12+07:00"
+    },
+    {
+      "path": "project.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2023-06-21T18:01:07+07:00"
+    }
+  ],
+  "collections": []
+}
