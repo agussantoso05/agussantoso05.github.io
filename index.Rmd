@@ -3,10 +3,10 @@
 title: "Agus Santoso"
 image: "profile.png"
 links:
-  - label: '`r fontawesome::fa("linkedin", height = "25px")`'
-    url: "https://linkedin.com/in/agussantosooxo/"
   - label: '`r fontawesome::fa("github", height = "25px")`'
     url: "https://github.com/agussantoso05/"
+  - label: '`r fontawesome::fa("linkedin", height = "25px")`'
+    url: "https://linkedin.com/in/agussantosooxo/"
   - label: '`r fontawesome::fa("envelope", height = "25px")`'
     url: "mailto:agus.santoso050899@gmail.com"
   - label: Resume

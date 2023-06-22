@@ -1,14 +1,29 @@
 name: "website"
 title: "Agus Santoso"
+favicon: images/favicon.ico
 description: |
   Agus Santoso
+base_url: https://agussantoso05.github.io/index.html
+repository_url: https://github.com/agussantoso05/agussantoso05.github.io/
 output_dir: "docs"
 navbar:
+  search: true
   right:
-    - text: "Home"
-      href: index.html
     - text: "About"
       href: about.html
     - text: "Project"
       href: project.html
+    - text: "Certifications"
+      href: certifications.html
+    - text: "Contact"
+      icon: fa-arrow 
+      menu:
+        - icon: fa-github
+          href: https://github.com/agussantoso05
+        - icon: fa-linkedin
+          href: https://linkedin.com/in/agussantosooxo
+        - icon: fa-envelope
+          href: mailto:agus.santoso050899@gmail.com
+        - icon: fa-instagram
+          href: https://instagram.com/agus_santoso.99?igshid=OGQ5ZDc2ODk2ZA==
 output: distill::distill_article

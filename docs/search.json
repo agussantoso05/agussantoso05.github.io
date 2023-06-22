@@ -2,26 +2,33 @@
   "articles": [
     {
       "path": "about.html",
+      "title": "About Me",
+      "author": [],
+      "contents": "\r\n\r\nContents\r\nShort Bio\r\nCollege Life\r\nBooks as a hobby\r\n\r\nWelcome to my personal website! I currently work as a Data Analyst at Campaign.com, where I specialize in extracting actionable insights from datasets. Practiced experience in data cleaning, visualization, and analysis with Spreadsheet, Excel, SQL, and Tableau. You can also see more about my background on my resume:\r\nShort Bio\r\nAgus Santoso is an Data Analyst at Campaign.com. His project focus on understanding how consumer preferences are based on app growth. Agus holds a B.Sc in physics from the Faculty of Mathematics and Natural Sciences at Sumatera Institute of Technology.\r\nCollege Life\r\nI began studying Physics at ITERA as an undergraduate in the mid of 2017. I work as an assistant in practicum and lessons in Material Processing class for 1 month. This provides an opportunity to increase my communication & presenting skills in front of at least 21 practitioner\r\nDuring the thesis, I choose to work on Material Physics. It was developing materials ZnO:Al Thin Layers to Solar Cell Application. Then, this project was presented at my lecture for final exam before graduation.\r\nBooks as a hobby\r\nMy library bookI always read books wherever I am. Books has a power to transport you to the authors world and away from the monotonous daily routine. Reading a variety of topics helps me to be more knowledgeable person, in turn improving my conversation skills.\r\nThanks for visiting my personal website, don’t hesitate to give a feedback you may have!\r\nBest,\r\nAgus\r\n\r\n\r\n\r\n",
+      "last_modified": "2023-06-22T08:35:36+07:00"
+    },
+    {
+      "path": "certifications.html",
       "title": "About this site",
-      "description": "Some additional details about the website",
+      "description": "Some additional details about my certifications",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2023-06-21T17:52:50+07:00"
+      "last_modified": "2023-06-22T07:26:18+07:00"
     },
     {
       "path": "index.html",
       "title": "Agus Santoso",
       "author": [],
-      "contents": "\r\n\r\n          \r\n          \r\n          Agus Santoso\r\n          \r\n          \r\n          Home\r\n          About\r\n          Project\r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            \r\n              \r\n            \r\n              Agus Santoso\r\n            \r\n            \r\n              \r\n                \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        Resume\r\n                      \r\n                    \r\n                  \r\n                                  \r\n            \r\n          \r\n        \r\n        \r\n        \r\n          \r\n            \r\n            Welcome to my personal website!🤚\r\n            I am a data analyst with an experience at Campaign a\r\n            social-tech company.\r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n      \r\n        \r\n          \r\n            \r\n              \r\n            \r\n              Agus Santoso\r\n            \r\n            \r\n              \r\n                \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      Resume\r\n                    \r\n                  \r\n                                  \r\n              \r\n            \r\n            \r\n              \r\n              Welcome to my personal website!🤚\r\n              I am a data analyst with an experience at Campaign a\r\n              social-tech company.\r\n              \r\n            \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
-      "last_modified": "2023-06-21T17:53:12+07:00"
+      "contents": "\r\n\r\n          \r\n          \r\n          Agus Santoso\r\n          \r\n          \r\n          About\r\n          Project\r\n          Certifications\r\n          \r\n          \r\n          Contact\r\n           \r\n          ▾\r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            \r\n              \r\n            \r\n              Agus Santoso\r\n            \r\n            \r\n              \r\n                \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        Resume\r\n                      \r\n                    \r\n                  \r\n                                  \r\n            \r\n          \r\n        \r\n        \r\n        \r\n          \r\n            \r\n            Welcome to my personal website!🤚\r\n            I am a data analyst with an experience at Campaign a\r\n            social-tech company.\r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n      \r\n        \r\n          \r\n            \r\n              \r\n            \r\n              Agus Santoso\r\n            \r\n            \r\n              \r\n                \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                  \r\n                                    \r\n                    \r\n                      Resume\r\n                    \r\n                  \r\n                                  \r\n              \r\n            \r\n            \r\n              \r\n              Welcome to my personal website!🤚\r\n              I am a data analyst with an experience at Campaign a\r\n              social-tech company.\r\n              \r\n            \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
+      "last_modified": "2023-06-22T07:29:25+07:00"
     },
     {
       "path": "project.html",
       "title": "About this site",
-      "description": "Some additional details about the website",
+      "description": "Some additional details about my project",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2023-06-21T18:01:07+07:00"
+      "last_modified": "2023-06-22T07:26:31+07:00"
     }
   ],
   "collections": []
