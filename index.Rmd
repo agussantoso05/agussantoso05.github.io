@@ -10,7 +10,7 @@ links:
   - label: '`r fontawesome::fa("envelope", height = "25px")`'
     url: "mailto:agus.santoso050899@gmail.com"
   - label: Resume
-    url: "https://docs.google.com/document/d/1cJ7o479hkgRyoXG73UDFTYrKXh0GS_ZbT-17ayYWwKs/edit"
+    url: "https://docs.google.com/document/d/1BYioB3YamrWlxux86CnpADxFsbHZ-jgxyscBvAUX3M4/edit"
 site: distill::distill_website
 output:
   postcards::trestles
@@ -18,5 +18,5 @@ output:
 
 # Welcome to my personal website!🤚
 
-I am a data analyst with an experience at Campaign a social-tech company.
+I am a data analyst with an experience 6+ months at Campaign #ForABetterWorld a social-tech company. I love to analyze and visualize data so that it can be used for decision making.
 
