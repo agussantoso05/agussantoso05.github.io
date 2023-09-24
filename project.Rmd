@@ -1,9 +1,7 @@
 ---
-title: "About this site"
-description: |
-  Some additional details about my project
+title: "Project"
+caption: |
+  A showcase of all projects created.
+listing:
+  posts
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```

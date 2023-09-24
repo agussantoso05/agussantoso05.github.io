@@ -1,0 +1,25 @@
+[
+  {
+    "path": "posts/2023-09-24-timesheet-monitoring-tracker/",
+    "title": "TimeSheet Monitoring Tracker",
+    "description": "A TimeSheet Monitoring Tracker to track the working hours performed by the intern employees.",
+    "author": [
+      {
+        "name": "Agus Santoso",
+        "url": {}
+      }
+    ],
+    "date": "2023-09-24",
+    "categories": [
+      "Spreadsheets",
+      "Monitoring Tracker",
+      "Data Visualizations"
+    ],
+    "contents": "\nIntroductions\nThis project is undertaken due to the people team’s and mentor need to track the working hours performed by the intern employees during their work activities on a weekly basis. This is to observe the performance patterns of the interns.\nWhat Tools To Use\nSpreadsheets\nSCQA Framework\nHere’s the SCQA Frameworks we use:\nSituation:\nThere is a working hour regulation for interns, which is currently set at 40 hours per week.\nThere is a discussion about changing the working hour regulation with two options: 30 hours per week or 15 hours per week.\nThe Campaign has implemented a work deliverables sheet in the commitment form, which serves as evidence of data regarding the tasks and working hours of interns every day.\nComplication:\nThe implementation of work deliverables has not been optimal due to the difficulty in monitoring, both by mentors and the people team.\nFeedback from some interns indicates that it is not very effective due to excessive administrative work, such as the obligation to fill out standup.ly and Jira tasks.\nAs a result, data related to the average working hours of interns per week cannot be compiled.\nQuestion:\nHow can we monitor and track the working hours of interns along with the tasks/projects they are working on?\nAnswer:\nTime/Task/Project Sheet Tracker\nModify the existing work deliverables sheet to create a sheet/form that is visually easier for interns to fill out.\nMentors can more easily monitor and provide feedback on a weekly/monthly basis.\nWorking hour data can be pulled by the people team, ensuring that interns comply with their choice of working hours (30 or 15 hours per week).\nPreparations\nHere, I want to describe a few tools in this analysis:\nSpreadsheets\nTools/Functions we use:\nFiltering\nSlicer\nImportrange\nFormating\nIF Functions\netc\n\nFiles : I want to know you Data files are hidden due to company secrets.\nStep and Plan\nCreate Template Work Deliverables Sheet\nCreate a new template with modifications from the previous sheet. This template will later be duplicated by each intern, then the data in the work deliverables sheet will be pulled into the Time Sheet Tracker (people-team data center). Heres the picture Work Deliverables Sheet Template.\n\nFig. 1. Template Work Deliverables Sheet.\nTimeSheet Monitoring Tracker\nCreate a TimeSheet Monitoring Tracker (Central Data). In the time sheet tracker there will be 4 sections:\nGuidlines: Contains How to Use the TimeSheet Monitoring Tracker\n\nFig. 2. Guidlines Tracker\nPeople Team Monitoring: Contains a total recap of internal work deliverables such as total working hours per week per intern.\n\nFig. 3. People Team Monitoring Tracker\nMentor Monitoring: Recap of internal work deliverables per team, to make it easier for mentors to check without having to open internal deliverables one by one.\n\nFig. 4. Mentor Monitoring Tracker\nData-Viz: To see a graph of the development of internal working hours.\n\nFig. 5. Data Vizualization Monitoring Tracker\nTrial and Error\nAfter the work deliverables sheets and TimeSheet Monitoring Tracker are created, we carry out the next step, namely by Trial & Error to finding out of the best way to reach a desired result or a correct solution by trying out one or more ways or means and by noting and eliminating errors or causes of failure.\nEvaluations\nEvaluation needs to be carried out to assess or calculate the quality of the TimeSheet Monitoring Tracker that we have developed. We can do this with all the data that has been collected since TimeSheet Monitoring Tracker was used.\nFinalization\nIn the last step we finalize it after all the steps have been carried out and the TimeSheet Monitoring Tracker can be used properly.\n\n\n\n",
+    "preview": "posts/2023-09-24-timesheet-monitoring-tracker/mt-peopleteam.png",
+    "last_modified": "2023-09-24T12:16:52+07:00",
+    "input_file": "timesheet-monitoring-tracker.knit.md",
+    "preview_width": 1440,
+    "preview_height": 900
+  }
+]
