@@ -5,7 +5,21 @@ output:
       toc: true
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(distilltools)
+```
+
 Welcome to my personal website! I currently work as a Data Analyst at Campaign.com, where I specialize in extracting actionable insights from datasets. Practiced experience in data cleaning, visualization, and analysis with Spreadsheet, Excel, SQL, and Tableau. You can also see more about my background on my resume:
+
+<center>
+```{r, resume icon, echo=FALSE}
+icon_link(
+    text = "Resume",
+    url  = "https://docs.google.com/document/d/1BYioB3YamrWlxux86CnpADxFsbHZ-jgxyscBvAUX3M4/edit?usp=sharing"
+)
+```
+</center>
 
 
 # Short Bio
