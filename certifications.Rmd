@@ -1,9 +1,46 @@
 ---
-title: "About this site"
+title: "Certifications"
 description: |
-  Some additional details about my certifications
+  Here is the showcase of certifications earned from courses or an achievement.
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    number_sections: false
+    code_folding: show
+    toc_depth: 2
+    self_contained: true
+    highlight: tango
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+# Data Analytics 📊
+
+## [Google Data Analytics Professional Certificate Program](https://www.coursera.org/account/accomplishments/specialization/certificate/DQWXSUYY3QDC)
+
+***Skill Earned***: Earn in tools and platforms including Spreadsheets, SQL, Tableau, and R. With know how to prepare, process, analyze, and share data for thoughtful action.
+
+## [RevoU Mini Course](https://drive.google.com/drive/folders/1pjwlf18_X_rgAv8JIMiNzeb4dZ7YGgCd)
+
+***Skill Earned***: Earn in tools and platforms including Spreadsheets, Basic SQL, Tableau, Basic Python and R. With know how to prepare, process, analyze the data through projects.
+
+## [Mini Bootcamp DQLab x UMN “Kampus Merdeka”](https://drive.google.com/drive/folders/1pjwlf18_X_rgAv8JIMiNzeb4dZ7YGgCd)
+
+***Skill Earned***: Earn in tools and platforms including Spreadsheets, Excel, SQL, Python, and R.
+
+
+
+# Digital Marketing 💹
+
+## [The Fundamental of Digital Marketing](https://drive.google.com/drive/folders/1pjwlf18_X_rgAv8JIMiNzeb4dZ7YGgCd){target="_blank"}
+
+***Skill earned***: SEO, Google Analytics, SEM, A/B testing.
+
+
+
+# Achievement 🏆
+
+- [Best Intern at Campaign #ForABetterWorld]
+
+- [Best Group Project at Campaign #ForABetterWorld](https://drive.google.com/file/d/1WCiAcOENRJD1HF7y1n2dWdizUWQJuSAD/view?usp=drive_link){target="_blank"}
