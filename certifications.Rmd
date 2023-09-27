@@ -3,16 +3,8 @@ title: "Certifications"
 description: |
   Here is the showcase of certifications earned from courses or an achievement.
 output:
-  distill::distill_article:
-    toc: true
-    toc_float: true
-    collapsed: false
-    smooth_scroll: false
-    number_sections: false
-    code_folding: show
-    toc_depth: 2
-    self_contained: true
-    highlight: tango
+    distill::distill_article:
+      toc: true
 ---
 
 # Data Analytics 📊
@@ -21,11 +13,11 @@ output:
 
 ***Skill Earned***: Earn in tools and platforms including Spreadsheets, SQL, Tableau, and R. With know how to prepare, process, analyze, and share data for thoughtful action.
 
-## [RevoU Mini Course](https://drive.google.com/drive/folders/1pjwlf18_X_rgAv8JIMiNzeb4dZ7YGgCd)
+## [RevoU Mini Course](https://drive.google.com/file/d/1dBmgc0Aw9JZl8QJXDRHSHpupyx429ilC/view?usp=sharing)
 
 ***Skill Earned***: Earn in tools and platforms including Spreadsheets, Basic SQL, Tableau, Basic Python and R. With know how to prepare, process, analyze the data through projects.
 
-## [Mini Bootcamp DQLab x UMN “Kampus Merdeka”](https://drive.google.com/drive/folders/1pjwlf18_X_rgAv8JIMiNzeb4dZ7YGgCd)
+## [Mini Bootcamp DQLab x UMN “Kampus Merdeka”](https://drive.google.com/file/d/1IAGzqwH3S_WDZeS80OmSB90_2nkl1S5p/view?usp=sharing)
 
 ***Skill Earned***: Earn in tools and platforms including Spreadsheets, Excel, SQL, Python, and R.
 
@@ -33,7 +25,7 @@ output:
 
 # Digital Marketing 💹
 
-## [The Fundamental of Digital Marketing](https://drive.google.com/drive/folders/1pjwlf18_X_rgAv8JIMiNzeb4dZ7YGgCd){target="_blank"}
+## [The Fundamental of Digital Marketing](https://drive.google.com/file/d/1VosgIqdQkAnb46Q1eND_TEOLuJ8VeGRs/view?usp=sharing){target="_blank"}
 
 ***Skill earned***: SEO, Google Analytics, SEM, A/B testing.
 
@@ -43,4 +35,4 @@ output:
 
 - [Best Intern at Campaign #ForABetterWorld]
 
-- [Best Group Project at Campaign #ForABetterWorld](https://drive.google.com/file/d/1WCiAcOENRJD1HF7y1n2dWdizUWQJuSAD/view?usp=drive_link){target="_blank"}
+- [Best Group Project at Campaign #ForABetterWorld](https://drive.google.com/file/d/1WCiAcOENRJD1HF7y1n2dWdizUWQJuSAD/view?usp=sharing){target="_blank"}
