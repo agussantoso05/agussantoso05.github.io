@@ -12,7 +12,19 @@
       <link>https://agussantoso05.github.io/index.html</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>2023-09-24</lastBuildDate>
+    <lastBuildDate>2023-09-28</lastBuildDate>
+    <item>
+      <title>NYC AirBnB Data Analytics Case Study</title>
+      <dc:creator>Agus Santoso</dc:creator>
+      <link>https://agussantoso05.github.io/index.html/posts/2023-09-29-nycairbnb-data-analytics-case-study</link>
+      <description>Identify a marketplace that connects people renting houses with people looking for a place to stay.</description>
+      <category>Python</category>
+      <category>Data Visualizations</category>
+      <category>Marketing Analysis</category>
+      <guid>https://agussantoso05.github.io/index.html/posts/2023-09-29-nycairbnb-data-analytics-case-study</guid>
+      <pubDate>2023-09-28</pubDate>
+      <media:content url="https://agussantoso05.github.io/index.html/posts/2023-09-29-nycairbnb-data-analytics-case-study/luxury_airbnb.webp" medium="image" type="application/octet-stream"/>
+    </item>
     <item>
       <title>TimeSheet Monitoring Tracker</title>
       <dc:creator>Agus Santoso</dc:creator>

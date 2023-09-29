@@ -1,0 +1,53 @@
+---
+title: "NYC AirBnB Data Analytics Case Study"
+description: |
+  Identify a marketplace that connects people renting houses with people looking for a place to stay.
+author:
+  - name: Agus Santoso
+date: 2023-09-29
+categories:
+  - Python
+  - Data Visualizations
+  - Marketing Analysis
+preview: luxury_airbnb.webp
+output:
+    distill::distill_article:
+      self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+# Introductions
+
+This personal project is a case study given by RevoU in a mini course held for 2 weeks to see the participants' understanding of the Data Analytics material that has been presented, therefore I tried to make several analyzes of this Airbnb which is a marketplace that connects people who renting out houses to people looking for a place to stay.
+
+
+
+# What Tools To Use
+
+- Google Colaboratory
+- Python
+
+
+
+# Summary
+
+<center>![Fig. 1. Te Kahu, Wanaka, New Zealand](airbnb_luxe.webp){width=auto}</center>
+
+Airbnb is an online marketplace that connects people who want to rent out their homes with people looking for accommodations in specific locales. The company has come a long way since 2007, when its co-founders first came up with the idea to invite paying guests to sleep on an air mattress in their living room. According to Airbnb's latest data, it now has more than 7 million listings, covering some 100,000 cities and towns in 220-plus countries and regions worldwide.
+
+
+
+# Exploratory Data Analytics
+
+## Preparation
+
+- Google Colaboratory
+- Import Libraries Python: 'pandas', 'numpy', 'matplotlib'
+- This public [dataset](https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data) is part of Airbnb, This is New York City Airbnb Open Data from [Dgomonov](https://www.kaggle.com/dgomonov/datasets).
+
