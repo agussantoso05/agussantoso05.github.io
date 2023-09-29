@@ -48,6 +48,50 @@ Airbnb is an online marketplace that connects people who want to rent out their 
 ## Preparation
 
 - Google Colaboratory
-- Import Libraries Python: 'pandas', 'numpy', 'matplotlib'
+- Import Libraries Python: *pandas*, *numpy*, *matplotlib*
 - This public [dataset](https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data) is part of Airbnb, This is New York City Airbnb Open Data from [Dgomonov](https://www.kaggle.com/dgomonov/datasets).
+
+
+
+## Import and Reading Data
+
+<details>
+
+<summary><b>Import libraries</b></summary>
+
+import libraries here
+
+</details>
+
+<details>
+
+<summary><b>Read the data</b></summary>
+
+read data here
+
+</details>
+
+
+
+## Data Understandings
+
+This is basic data understandings like:
+
+- *DataFrame* : *df.*
+- *shape* : *df.shape()*
+- *head* : *df.head()*
+- *info* : *df.info()*
+- *describe* : *df.describe()*
+
+<details>
+
+<summary><b>basic data understandings</b></summary>
+
+read data here
+
+</details>
+
+
+
+## Data Processing
 
