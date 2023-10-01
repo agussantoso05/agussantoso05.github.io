@@ -53,6 +53,18 @@ Airbnb is an online marketplace that connects people who want to rent out their 
 
 
 
+## Connect with the data
+
+The first step is that we have to make sure our data is connected.
+
+```{python, Step1 Connect with data, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Connect with dataset in drive
+from google.colab import drive
+drive.mount("/content/drive")
+```
+
+
+
 ## Import and Reading Data
 
 <details>
