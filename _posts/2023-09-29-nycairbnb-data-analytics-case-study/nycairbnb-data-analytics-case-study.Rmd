@@ -55,6 +55,10 @@ Airbnb is an online marketplace that connects people who want to rent out their 
 
 ## Connect with the data
 
+<details>
+
+<summary><b>Connect the data</b></summary>
+
 The first step is that we have to make sure our data is connected.
 
 ```{python, Step1 Connect with data, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -63,7 +67,7 @@ from google.colab import drive
 drive.mount("/content/drive")
 ```
 
-
+</details>
 
 ## Import and Reading Data
 
@@ -71,7 +75,19 @@ drive.mount("/content/drive")
 
 <summary><b>Import libraries</b></summary>
 
-import libraries here
+Import libraries we need to use, like:
+
+```{python, Step2 Import libraries, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import random as random
+import random
+from datetime import datetime, timedelta
+import plotly.express as px
+import warnings
+```
 
 </details>
 
@@ -79,13 +95,22 @@ import libraries here
 
 <summary><b>Read the data</b></summary>
 
-read data here
+Read the data
+
+```{python, Step3 Read the data, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Read the data
+df = pd.read_csv("/content/drive/MyDrive/dataset nyc airbnb/AB_NYC_2019.csv")
+```
 
 </details>
 
 
 
 ## Data Understandings
+
+<details>
+
+<summary><b>Basic data understandings</b></summary>
 
 This is basic data understandings like:
 
@@ -95,15 +120,218 @@ This is basic data understandings like:
 - *info* : *df.info()*
 - *describe* : *df.describe()*
 
-<details>
-
-<summary><b>basic data understandings</b></summary>
-
-read data here
-
 </details>
 
 
 
 ## Data Processing
+
+
+<details>
+
+<summary><b>Informations of Dataset</b></summary>
+
+In the first step of data processing we can use several database understandings to see an overview of the dataset to data type information and check for the duplicates values.
+
+```{python, Step4 View the data, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df.head() # View the data
+df.describe() # View the descriptive statistics or overview the dataset
+df.info() # View the info from data like data type and others
+print(df.shape) # Provide the number of rows and columns in the dataset
+list(df) # View list of column names
+df.drop_duplicates() # Check for the duplicates values
+df.shape
+print(df.isnull().sum()) # Print the number of null values in each column
+```
+</details>
+
+<details>
+
+<summary><b>Fixing Error</b></summary>
+
+Second step is fixing error form the data
+
+- Change the data type if something is wrong
+
+```{python, Step5 Change the data type, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Change the data type from object to date
+df['last_review'] = pd.to_datetime(df['last_review'])
+df['review_year'] = df['last_review'].apply(lambda last_review:last_review.year)
+df['review_year'] = df['review_year'].fillna(0)
+df['review_year'] = df.review_year.astype(int)
+df = pd.concat([df[(df['availability_365']==0) & (df['review_year']==2019)],df[df['availability_365']>0]])
+```
+
+- Replace missing values
+
+```{python, Step6 Replace missing values, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#Replace the missing value with 0
+df['reviews_per_month'] = df['reviews_per_month'].fillna(0)
+```
+
+- Check again the data info
+
+```{python, Step7 data info, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df.info()
+```
+
+- Fixing again if there is still something you want to fix
+here i want to drop data last_review and eplace the missing 'name' values by random name.
+
+```{python, Step8 drop some column, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Drop the 'last_review' column
+df.drop('last_review', axis=1, inplace=True)
+
+# Replace the missing 'name' values by random name
+df = df.fillna({'name': 'Upper East Side Oasis!'}) # here i fill with 'Upper East Side Oasis!'
+df = df.fillna({'host_name': 'john'}) # here i fill with 'john'
+```
+
+- View the dataset
+view the dataset with df.head() and df.info() and check too dataset isnull.
+
+```{python, Step9 view dataset, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df.head()
+df.info()
+print(df.isnull().sum())
+```
+</details>
+
+<details>
+
+<summary><b>Design Visualizations</b></summary>
+
+- Heatmap Correlations
+Correlation heatmaps are here to show us how closely related variables are.
+
+```{python, Viz1 heatmap correlations, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+plt.figure(figsize=(12,12))
+sns.heatmap(df.corr(), cmap='Blues', annot=True,)
+plt.show()
+```
+
+- Bar plot
+To shows Proportion of Airbnb listings across boroughs and room type.
+
+```{python, Viz2 bar plot, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a bar plot borough
+(df['neighbourhood_group'].value_counts() / df.shape[0]).plot.bar(cmap='tab10', title='Proportion of Airbnb listings across boroughs')
+plt.xlabel('Borough')
+plt.ylabel('Proportion')
+plt.xticks(rotation=45)
+plt.show()
+
+# Create a bar plot room type
+(df['room_type'].value_counts() / df.shape[0]).plot.bar(cmap='tab10', title='Proportion of Airbnb listings across room_type')
+plt.xlabel('Room Type')
+plt.ylabel('Proportion')
+plt.xticks(rotation=45)
+plt.show()
+```
+
+- Count of Room Types by Neighbourhood Group
+To see room type by neighbourhood group
+
+```{python, Viz3 count room type by neighbourhood group, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create the count plot
+plt.figure(figsize=(10, 10))
+sns.set(style="whitegrid")
+# Create a count plot with 'room_type' on the x-axis and hue='neighbourhood_group'
+sns.countplot(data=df, x='room_type', hue='neighbourhood_group', palette='viridis')
+plt.title('Count of Room Types by Neighbourhood Group')
+# Show the plot
+plt.show()
+```
+
+- Most Popular Neighbourhood Group Based on Availability
+To see which ones are the most popular based on availability
+
+```{python, Viz4 Most Popular Neighbourhood Group Based on Availability, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create the bar plot
+plt.figure(figsize=(10, 6))
+sns.set(style="whitegrid")
+# Sort the DataFrame by 'availability_365' in descending order
+df_sorted = df.sort_values(by='availability_365', ascending=False)
+# Create the bar plot
+sns.boxplot(data=df_sorted, x='neighbourhood_group', y='availability_365', palette='viridis')
+plt.xlabel('Neighbourhood Group')
+plt.ylabel('Availability (in days)')
+plt.title('Most Popular Neighbourhood Group Based on Availability')
+# Show the plot
+plt.show()
+```
+
+- Most Expensive
+To see where is the most expensive area?
+
+```{python, Viz5 Most Expensive Area, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create the bar plot
+fig = sns.catplot(x='neighbourhood_group', y='price', data=df, kind='bar', hue='room_type', palette='viridis')
+# Add a title and adjust its position
+fig.fig.suptitle('Where is the most expensive area?', fontsize=15, y=1.05)
+# Save the plot as an image with tight layout
+fig.savefig('most_expensive_area.png', bbox_inches='tight')
+```
+
+- Popular area?
+To seewhere is the most popular area?
+
+```{python, Viz6 Most Popular Area, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create the bar plot
+fig1 = sns.catplot(x='neighbourhood_group',y='availability_365',kind='box',hue='room_type',data=df,palette='viridis')
+# Add a title and adjust its position
+fig1.fig.suptitle('Where is the most popular area?',fontsize=15,y=1.05)
+# Save the plot as an image with tight layout
+fig1.savefig('most_popular_area.png', bbox_inches = 'tight')
+```
+
+- Map Box
+Next, we can visualize it using a box map to see the distribution.
+
+```{python, Viz7 Map Box, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# Visualize Map Box with scatterplot
+plt.figure(figsize=(10,10))
+sns.scatterplot(x='longitude', y='latitude', hue='neighbourhood_group',s=20, data=df, palette="viridis")
+```
+
+- Top 5 Host Listing
+To see who the top 5 by calculated_host_listings_count
+
+```{python, Viz8 top 5 host listing, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Calculate total reviews per host
+total_host_listings_count = df.groupby('host_name')['calculated_host_listings_count'].sum()
+# Rank hosts by total listings count
+ranked_hosts = total_host_listings_count.sort_values(ascending=False)
+# Top 5 host_names based on total listings count
+top_5_host_names = ranked_hosts.head(5)
+# Display the top 5 host_names
+print(top_5_host_names)
+
+# Create a bar plot to visualize the top 5 host_names by total listings
+plt.figure(figsize=(10, 6))
+plt.bar(top_5_host_names.index, top_5_host_names.values, color='skyblue')
+plt.xlabel('Host Name')
+plt.ylabel('Total Listings')
+plt.title('Top 5 Hosts by Total Listings')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Show the plot
+plt.show()
+```
+
+</details>
+
+
+
+## Visualizations and Analysis
+
+### Heatmaps Correlations
+A correlation heatmap is a graphical representation of a correlation matrix representing the correlation between different variables. The value of correlation can take any value from -1 to 1. Correlation between two random variables or bivariate data does not necessarily imply a causal relationship. We can see it as in ***Fig. 2*** below 👇
+
+<center>![***Fig. 2.*** Heatmaps Correlations.](heatmaps.png){width="75%"}</center>
+
+
+
 
