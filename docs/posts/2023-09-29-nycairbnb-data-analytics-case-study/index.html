@@ -2189,7 +2189,7 @@ Contact
 <center>
 <figure>
 <img src="airbnb_luxe.webp" alt="Fig. 1. Te Kahu, Wanaka, New Zealand" />
-<figcaption aria-hidden="true">Fig. 1. Te Kahu, Wanaka, New Zealand</figcaption>
+<figcaption aria-hidden="true"><strong><em>Fig. 1.</em></strong> Te Kahu, Wanaka, New Zealand</figcaption>
 </figure>
 </center>
 <p>Airbnb is an online marketplace that connects people who want to rent out their homes with people looking for accommodations in specific locales. The company has come a long way since 2007, when its co-founders first came up with the idea to invite paying guests to sleep on an air mattress in their living room. According to Airbnb’s latest data, it now has more than 7 million listings, covering some 100,000 cities and towns in 220-plus countries and regions worldwide.</p>
@@ -2327,18 +2327,18 @@ view the dataset with df.head() and df.info() and check too dataset isnull.</li>
 <b>Design Visualizations</b>
 </summary>
 <ul>
-<li>Heatmap Correlations
-Correlation heatmaps are here to show us how closely related variables are.</li>
+<li>Heatmap Correlations</li>
 </ul>
+<p>Correlation heatmaps are here to show us how closely related variables are.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr(), cmap<span class="op">=</span><span class="st">&#39;Blues&#39;</span>, annot<span class="op">=</span><span class="va">True</span>,)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <ul>
-<li>Count of Room Types by Neighbourhood Group
-To see room type by neighbourhood group</li>
+<li>Count of Room Types by Neighbourhood Group</li>
 </ul>
+<p>To see room type by neighbourhood group</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the count plot</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
@@ -2350,9 +2350,9 @@ To see room type by neighbourhood group</li>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <ul>
-<li>Bar plot
-To shows Proportion of Airbnb listings across boroughs and room type.</li>
+<li>Bar plot</li>
 </ul>
+<p>To shows Proportion of Airbnb listings across boroughs and room type.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar plot borough</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>(df[<span class="st">&#39;neighbourhood_group&#39;</span>].value_counts() <span class="op">/</span> df.shape[<span class="dv">0</span>]).plot.bar(cmap<span class="op">=</span><span class="st">&#39;tab10&#39;</span>, title<span class="op">=</span><span class="st">&#39;Proportion of Airbnb listings across boroughs&#39;</span>)</span>
@@ -2369,9 +2369,9 @@ To shows Proportion of Airbnb listings across boroughs and room type.</li>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <ul>
-<li>Most Expensive
-To see where is the most expensive area?</li>
+<li>Most Expensive</li>
 </ul>
+<p>To see where is the most expensive area?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> sns.catplot(x<span class="op">=</span><span class="st">&#39;neighbourhood_group&#39;</span>, y<span class="op">=</span><span class="st">&#39;price&#39;</span>, data<span class="op">=</span>df, kind<span class="op">=</span><span class="st">&#39;bar&#39;</span>, hue<span class="op">=</span><span class="st">&#39;room_type&#39;</span>, palette<span class="op">=</span><span class="st">&#39;viridis&#39;</span>)</span>
@@ -2381,9 +2381,9 @@ To see where is the most expensive area?</li>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">&#39;most_expensive_area.png&#39;</span>, bbox_inches<span class="op">=</span><span class="st">&#39;tight&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
-<li>Popular area?
-To seewhere is the most popular area based on availability?</li>
+<li>Popular area?</li>
 </ul>
+<p>To see where is the most popular area based on availability?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
@@ -2399,18 +2399,18 @@ To seewhere is the most popular area based on availability?</li>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <ul>
-<li>Map Box
-Next, we can visualize it using a box map to see the distribution.</li>
+<li>Map Box</li>
 </ul>
+<p>Next, we can visualize it using a box map to see the distribution.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Map Box with scatterplot</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">&#39;longitude&#39;</span>, y<span class="op">=</span><span class="st">&#39;latitude&#39;</span>, hue<span class="op">=</span><span class="st">&#39;neighbourhood_group&#39;</span>,s<span class="op">=</span><span class="dv">20</span>, data<span class="op">=</span>df, palette<span class="op">=</span><span class="st">&quot;viridis&quot;</span>)</span></code></pre></div>
 </div>
 <ul>
-<li>Top 5 Host Listing
-To see who the top 5 by calculated_host_listings_count</li>
+<li>Top 5 Host Listing</li>
 </ul>
+<p>To see who the top 5 by calculated_host_listings_count</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate total reviews per host</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>total_host_listings_count <span class="op">=</span> df.groupby(<span class="st">&#39;host_name&#39;</span>)[<span class="st">&#39;calculated_host_listings_count&#39;</span>].<span class="bu">sum</span>()</span>
@@ -2452,8 +2452,11 @@ To see who the top 5 by calculated_host_listings_count</li>
 <p>This is Breakdown from Count of Room Types by Neighbourhood Group</p>
 <h4 id="proportion-of-airbnb-listings-across-boroughs">Proportion of Airbnb listings across boroughs</h4>
 <p>In this analysis, we explore the distribution of Airbnb listings across the five major boroughs of New York City: Manhattan, Bronx, Brooklyn, Queens, and Staten Island. We can see details in <strong><em>Fig. 4.</em></strong></p>
-<p><img src="proportion%20of%20borough.png" alt="Fig. 4. Proportion of Airbnb Listings Across Boroughs." />
-Regarding boroughs in this graph <strong><em>Fig. 4.</em></strong>, Manhattan and Brooklyn have the highest proportions of Airbnb listings, reflecting their status as top tourist destinations. Queens also boasts a significant number of listings, while the Bronx offers a more affordable alternative. Staten Island, with its suburban appeal, has the smallest share of Airbnb listings among the five boroughs.</p>
+<figure>
+<img src="proportion%20of%20borough.png" alt="Fig. 4. Proportion of Airbnb Listings Across Boroughs." />
+<figcaption aria-hidden="true"><strong><em>Fig. 4.</em></strong> Proportion of Airbnb Listings Across Boroughs.</figcaption>
+</figure>
+<p>Regarding boroughs in this graph <strong><em>Fig. 4.</em></strong>, Manhattan and Brooklyn have the highest proportions of Airbnb listings, reflecting their status as top tourist destinations. Queens also boasts a significant number of listings, while the Bronx offers a more affordable alternative. Staten Island, with its suburban appeal, has the smallest share of Airbnb listings among the five boroughs.</p>
 <h4 id="proportion-of-airbnb-listings-across-room_type">Proportion of Airbnb listings across room_type</h4>
 <p>In addition to region, We explored the Airbnb listing distribution of three room types in New York City: Entire home/apt, Private room, and Shared room. We can see details in <strong><em>Fig. 5.</em></strong></p>
 <figure>
@@ -2476,8 +2479,11 @@ Regarding boroughs in this graph <strong><em>Fig. 4.</em></strong>, Manhattan an
 <p>Please note that the specific rental prices can vary greatly within each borough, and this analysis provides a general overview. If you have access to the relevant data, you can create more detailed analyses and visuals to dive deeper into the specific neighborhoods and factors influencing rental prices in each area.</p>
 <h3 id="most-popular-neighbourhood-group-based-on-availability">Most Popular Neighbourhood Group Based On Availability?</h3>
 <p>The box plot analysis depicts the availability of Airbnb listings in the five major boroughs of New York City (Manhattan, Bronx, Brooklyn, Queens, and Staten Island). The ‘availability_365’ metric is used to measure the availability of listings throughout the year. We can see the details in <strong><em>Fig. 7.</em></strong></p>
-<p><img src="most%20popular%20neighbourhood%20group%20based%20on%20availability.png" alt="Fig. 7. The Most Popular Area Based On Availability." />
-Looking at the above categorical box plot we can infer that the listings in State Island seems to be more available throughout the year to more than 300 days. On an average, these listings are available to around more 250 days every year followed by Bronx where every listings are available for around more 150 on an average every year.</p>
+<figure>
+<img src="most%20popular%20neighbourhood%20group%20based%20on%20availability.png" alt="Fig. 7. The Most Popular Area Based On Availability." />
+<figcaption aria-hidden="true"><strong><em>Fig. 7.</em></strong> The Most Popular Area Based On Availability.</figcaption>
+</figure>
+<p>Looking at the above categorical box plot we can infer that the listings in State Island seems to be more available throughout the year to more than 300 days. On an average, these listings are available to around more 250 days every year followed by Bronx where every listings are available for around more 150 on an average every year.</p>
 <h3 id="lets-also-see-map-box-distributions">Let’s also see Map Box Distributions</h3>
 <figure>
 <img src="boxmaps%20distributions.png" alt="Fig. 8. Map Box Distributions." />

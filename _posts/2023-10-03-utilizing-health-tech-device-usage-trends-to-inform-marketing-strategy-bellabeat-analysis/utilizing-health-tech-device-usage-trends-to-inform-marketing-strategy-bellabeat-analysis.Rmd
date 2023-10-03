@@ -1,0 +1,621 @@
+---
+title: "Utilizing Health Tech Device Usage Trends to Inform Marketing Strategy: Bellabeat Analysis"
+description: |
+  To analyze smart device data to gain insight into how consumers are using their smart devices.
+author:
+  - name: Agus Santoso
+date: 2023-09-29
+categories:
+  - Python
+  - Data Visualizations
+  - Marketing Analysis
+preview: bellabeat.jpeg
+output:
+    distill::distill_article:
+      self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+# Introductions
+### Scenario
+Welcome to the Bellabeat data analysis case study! In this case study, I will perform many real-world tasks of a junior data analyst. I will imagine I am working for Bellabeat, a high-tech manufacturer of health-focused products for women, and meet different characters and team members. In order to answer the key business questions, you will follow the steps of the data analysis process: ***ask, prepare, process, analyze, share, and act.***
+
+<center>![***Fig. 1.*** Bellabeat Leaf's.](bellabeat.jpeg){width=auto}</center>
+
+I am a junior data analyst working on the marketing analyst team at Bellabeat, a high-tech manufacturer of health-focused products for women. Bellabeat is a successful small company, but they have the potential to become a larger player in the global smart device market. Urška Sršen, cofounder and Chief Creative Officer of Bellabeat, believes that analyzing smart device fitness data could help unlock new growth opportunities for the company. I have been asked to focus on one of Bellabeat’s products and analyze smart device data to gain insight into how consumers are using their smart devices. The insights I discover will then help guide marketing strategy for the company. I will present your analysis to the Bellabeat executive team along with your high-level recommendations for Bellabeat’s marketing strategy.
+
+
+# What Tools To Use
+
+- Google Colaboratory
+- Python
+
+
+
+# Exploratory Data Analytics
+
+- Google Colaboratory
+- Import Libraries Python: *pandas*, *numpy*, *matplotlib*, *etc.*
+- This public [dataset in here](https://www.kaggle.com/datasets/arashnic/fitbit)
+
+
+## Connect with the data
+
+<details>
+
+<summary><b>Connect the data</b></summary>
+
+The first step is that we have to make sure our data is connected.
+
+```{python, Step1 Connect with data, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#Connect google colab with my drive
+from google.colab import drive
+drive.mount("/content/drive")
+```
+
+</details>
+
+
+## Import and Reading Data
+
+<details>
+
+<summary><b>Import libraries</b></summary>
+
+Import libraries we need to use, like:
+
+```{python, Step2 Import libraries, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#import libraries all we need
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import random as random
+import plotly.graph_objects as go
+from plotly.offline import iplot
+from plotnine.data import economics
+from plotnine import ggplot, aes, geom_line
+import warnings
+```
+</details>
+
+<details>
+
+<summary><b>Read the data</b></summary>
+
+Read the data
+
+```{python, Step3 Read the data, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#import the data we use
+daily_activity  = pd.read_csv("/content/drive/MyDrive/Fitabase Dataset/dailyActivity_merged.csv")
+daily_calories = pd.read_csv("/content/drive/MyDrive/Fitabase Dataset/dailyCalories_merged.csv")
+sleep_day  = pd.read_csv("/content/drive/MyDrive/Fitabase Dataset/sleepDay_merged.csv")
+weight_log_info  = pd.read_csv("/content/drive/MyDrive/Fitabase Dataset/weightLogInfo_merged.csv")
+```
+</details>
+
+
+## Data Understandings
+
+<details>
+
+<summary><b>Basic data understandings</b></summary>
+
+This is basic data understandings like:
+
+- *DataFrame* : *df.*
+- *shape* : *df.shape()*
+- *head* : *df.head()*
+- *info* : *df.info()*
+- *describe* : *df.describe()*
+
+</details>
+
+
+## Data Processing
+
+<details>
+
+<summary><b>Informations of Dataset</b></summary>
+
+In the first step of data processing we can use several database understandings to see an overview of the dataset to data type information and check for the duplicates values.
+
+***Breakdown the data to make analysis easier***
+
+- Daily Activity Dataset
+
+```{python, Step4 View the data, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+daily_activity.head() # View the data
+daily_activity.describe() # View the descriptive statistics or overview the dataset
+ddaily_activity.info() # View the info from data like data type and others
+print(daily_activity.shape) # Provide the number of rows and columns in the dataset
+list(daily_activity) # View list of column names
+daily_activity.drop_duplicates() # Check for the duplicates values
+daily_activity.shape
+print(daily_activity.isnull().sum()) # Print the number of null values in each column
+```
+
+</details>
+
+<details>
+
+<summary><b>Fixing Error</b></summary>
+
+Second step is fixing error form the data
+
+- Change the data type if something is wrong
+
+Fixing Error from data type ActivityDay --> from object to date
+```{python, Step5 Change the data type, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#Change the data type from object to date
+daily_activity['ActivityDate'] = pd.to_datetime(daily_activity['ActivityDate'])
+```
+
+- Create/Adding New Columns 
+
+```{python, Step5 Adding column, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create year column
+daily_activity['Year'] = daily_activity['ActivityDate'].dt.year
+
+# Create month column
+daily_activity['Month'] = daily_activity['ActivityDate'].dt.month
+
+# Create day column
+daily_activity['Day'] = daily_activity['ActivityDate'].dt.day
+
+# Create day_of_week column
+daily_activity['Day_of_week'] = daily_activity['ActivityDate'].dt.day_name()
+```
+
+- Check again the data info
+
+```{python, Step7 data info, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+daily_activity.info()
+daily_activity.head()
+```
+
+check the information after change data type and adding the data with daily_activity.info() and daily_activity.head(). Details like the image below.
+
+<center>![***Fig. 2.*** Screenshot daily_activity.info()](screenshotdatainfo.png){width=auto}</center>
+
+*Noted: Do the same for daily_calories, sleep_day, and weight_log_info adjusted to the dataset. If all the required datasets have been prepared and processed, you can proceed to the next step.*
+
+</details>
+
+
+<details>
+
+<summary><b>Design Visualizations</b></summary>
+
+- Heatmap Correlations
+
+```{python, Viz1 heatmap correlations, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+plt.figure(figsize=(14,14))
+sns.heatmap(daily_activity.corr(), cmap='Greens', annot=True,)
+plt.show()
+```
+
+- Very Active Minutes by Day of the Week
+
+```{python, Viz2 veryactiveminutesbyday, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Calculate the total VeryActiveMinutes for each day of the week
+very_active_minutes_by_day = daily_activity.groupby("Day_of_week")["VeryActiveMinutes"].sum()
+
+# Create a list of days of the week in the desired order
+days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+# Use the tab10 colormap for the bars
+colors = plt.cm.tab10(range(len(days_of_week)))
+
+# Create a bar chart to visualize the data
+plt.figure(figsize=(10, 6))
+plt.bar(days_of_week, very_active_minutes_by_day, color=colors)
+plt.xlabel("Day of the Week")
+plt.ylabel("Very Active Minutes")
+plt.title("Very Active Minutes by Day of the Week")
+plt.show()
+```
+
+- Sedentary Minutes by Day of the Week
+
+```{python, Viz3 sedentaryminutesbyday, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Calculate the total SedentaryMinutes for each day of the week
+sedentary_minutes_by_day = daily_activity.groupby("Day_of_week")["SedentaryMinutes"].sum()
+
+# Create a list of days of the week in the desired order
+days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+# Use the tab10 colormap for the bars
+colors = plt.cm.tab10(range(len(days_of_week)))
+
+# Create a bar chart to visualize the data
+plt.figure(figsize=(10, 6))
+plt.bar(days_of_week, sedentary_minutes_by_day, color=colors)
+plt.xlabel("Day of the Week")
+plt.ylabel("Sedentary Minutes")
+plt.title("Sedentary Minutes by Day of the Week")
+plt.show()
+```
+
+- Total Steps by Day of the Week
+
+```{python, Viz4 totalstepsbyday, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Calculate the total TotalSteps for each day of the week
+total_steps_by_day = daily_activity.groupby("Day_of_week")["TotalSteps"].sum()
+
+# Create a list of days of the week in the desired order
+days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+# Create a bar chart to visualize the data
+plt.figure(figsize=(10, 6))
+plt.bar(days_of_week, total_steps_by_day)
+plt.xlabel("Day of the Week")
+plt.ylabel("Total Steps")
+plt.title("Total Steps by Day of the Week")
+plt.show()
+```
+
+- Relationship between Total Steps and Calories
+
+```{python, Viz5 relations between calories and total step, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a scatter plot using Seaborn
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=daily_activity, x="TotalSteps", y="Calories", hue="SedentaryMinutes", palette="coolwarm", alpha=0.7)
+plt.xlabel("Total Steps")
+plt.ylabel("Calories")
+plt.title("Relationship between Total Steps and Calories")
+plt.grid(True)
+
+# Add a regression line (similar to geom_smooth in ggplot2)
+sns.regplot(data=daily_activity, x="TotalSteps", y="Calories", scatter=False, color="gray")
+
+plt.show()
+```
+
+- Total Distance During Each day
+
+```{python, Viz6 Total Distance During Each day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+da_days = daily_activity.groupby('Day_of_week').agg({'TotalDistance':'sum'}).reset_index().sort_values('TotalDistance',ascending = False)
+
+a1 = (8, 6)
+fig, ax = plt.subplots(figsize=a1)
+plot= sns.barplot(x="Day_of_week", y="TotalDistance", data=da_days,palette ="deep")
+plot.set_xticklabels(ax.get_xticklabels(),rotation=90)
+plot.set_title('Total Distance During Each Day')
+ax.set_ylabel('Total Distance Sum')
+ax.set_xlabel('Days')
+```
+
+- Total Distance by Month
+
+```{python, Viz7 Total Distance by Month, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+plt.figure(figsize=(8, 6))
+total_activity_by_month = daily_activity.groupby('Month')['TotalDistance'].sum().reset_index()
+sns.barplot(x='Month', y='TotalDistance', data=daily_activity)
+plt.xlabel('Month')
+plt.ylabel('Total Distance')
+plt.title('Total Distance by Month')
+plt.show()
+```
+
+- Total Steps and Total Distance by Day of Week
+
+```{python, Viz8 Total Steps and Total Distance by Day of Week, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a figure and the primary y-axis
+fig, ax1 = plt.subplots(figsize=(10, 6))
+sns.barplot(x='Day_of_week', y='TotalSteps', data=daily_activity, label='Total Steps', color='skyblue', ax=ax1)
+
+# Calculate a scaling factor for Total Distance
+total_distance_max = daily_activity['TotalDistance'].max()
+scaling_factor = daily_activity['TotalSteps'].max() / total_distance_max
+
+# Plot Total Distance (scaled) on the secondary y-axis
+daily_activity['TotalDistance_scaled'] = daily_activity['TotalDistance'] * scaling_factor
+sns.barplot(x='Day_of_week', y='TotalDistance_scaled', data=daily_activity, label='Total Distance', color='salmon', ax=ax1)
+
+# Customize the plot
+plt.title('Total Steps and Total Distance by Day of Week')
+ax1.set_xlabel('Day of Week')
+ax1.set_ylabel('Count')
+plt.grid(True)
+
+# Show the plot
+plt.tight_layout()
+plt.show()
+```
+
+- Total Steps and Total Distance by Month
+
+```{python, Viz9 Total Steps and Total Distance by Month, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a figure and the primary y-axis
+fig, ax1 = plt.subplots(figsize=(10, 6))
+sns.barplot(x='Month', y='TotalSteps', data=daily_activity, label='Total Steps', color='skyblue', ax=ax1)
+
+# Calculate a scaling factor for Total Distance
+total_distance_max = daily_activity['TotalDistance'].max()
+scaling_factor = daily_activity['TotalSteps'].max() / total_distance_max
+
+# Plot Total Distance (scaled) on the secondary y-axis
+daily_activity['TotalDistance_scaled'] = daily_activity['TotalDistance'] * scaling_factor
+sns.barplot(x='Month', y='TotalDistance_scaled', data=daily_activity, label='Total Distance', color='salmon', ax=ax1)
+
+# Customize the plot
+plt.title('Total Steps and Total Distance by Months')
+ax1.set_xlabel('Month')
+ax1.set_ylabel('Count')
+plt.grid(True)
+
+# Show the plot
+plt.tight_layout()
+plt.show()
+```
+
+- Average Activity Minutes by Day of Week
+
+```{python, Viz10 Average Activity Minutes by Day of Week, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Calculate the average values for each activity type by Day_of_week
+average_activity = daily_activity.groupby('Day_of_week').agg({
+    'VeryActiveMinutes': 'mean',
+    'FairlyActiveMinutes': 'mean',
+    'LightlyActiveMinutes': 'mean',
+    'SedentaryMinutes': 'mean'
+}).reset_index()
+
+# Melt the DataFrame to create a tidy format for plotting
+melted_df = pd.melt(average_activity, id_vars='Day_of_week', var_name='Activity', value_name='Minutes')
+
+# Create a scatter plot with linear regression line
+plt.figure(figsize=(10, 6))
+sns.lmplot(x='Day_of_week', y='Minutes', hue='Activity', data=melted_df, height=6, aspect=1.5)
+
+# Customize the plot
+plt.title('Average Activity Minutes by Day of Week')
+plt.xlabel('Day of Week')
+plt.ylabel('Average Minutes')
+plt.legend(title='Activity Type')
+
+# Show the plot
+plt.tight_layout()
+plt.show()
+```
+
+- Total Calories During Each Day
+
+```{python, Viz11 Total Calories During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dc_days = daily_calories.groupby('Day_of_week').agg({'Calories':'sum'}).reset_index().sort_values('Calories',ascending = False)
+
+a1 = (8, 6)
+fig, ax = plt.subplots(figsize=a1)
+plot= sns.barplot(x="Day_of_week", y="Calories", data=dc_days,palette ="deep")
+plot.set_xticklabels(ax.get_xticklabels(),rotation=90)
+plot.set_title('Total Calories During Each Day')
+ax.set_ylabel('Total Calories')
+ax.set_xlabel('Days')
+```
+
+- Total Calories by Month
+
+```{python, Viz12 Total Calories by Month, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+plt.figure(figsize=(8, 6))
+total_calories_by_month = daily_calories.groupby('Month')['Calories'].sum().reset_index()
+sns.barplot(x='Month', y='Calories', data=daily_calories)
+plt.xlabel('Month')
+plt.ylabel('Total Calories')
+plt.title('Total Calories by Month')
+plt.show()
+```
+
+
+- Total Minutes A Sleep During Each Day
+
+```{python, Viz13 Total Minutes A Sleep During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+sd_days = sleep_day.groupby('Day_of_week').agg({'TotalMinutesAsleep':'sum'}).reset_index().sort_values('TotalMinutesAsleep',ascending = False)
+
+a1 = (8, 6)
+fig, ax = plt.subplots(figsize=a1)
+plot= sns.barplot(x="Day_of_week", y="TotalMinutesAsleep", data=sd_days,palette ="deep")
+plot.set_xticklabels(ax.get_xticklabels(),rotation=90)
+plot.set_title('Total Minutes A Sleep During Each Day')
+ax.set_ylabel('Total Minutes A Sleep')
+ax.set_xlabel('Days')
+```
+
+
+- Total Minutes A Sleep by Month
+
+```{python, Viz14 Total Minutes A Sleep by Month, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+plt.figure(figsize=(8, 6))
+total_sleep_day_by_month = sleep_day.groupby('Month')['TotalMinutesAsleep'].sum().reset_index()
+sns.barplot(x='Month', y='TotalMinutesAsleep', data=sleep_day)
+plt.xlabel('Month')
+plt.ylabel('Total Minutes A Sleep')
+plt.title('Total Minutes A Sleep by Month')
+plt.show()
+```
+
+
+- Total WeightKg During Each Day
+
+```{python, Viz15 Total WeightKg During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+wl_info = weight_log_info.groupby('Day_of_week').agg({'WeightKg':'sum'}).reset_index().sort_values('WeightKg',ascending = False)
+
+a1 = (8, 6)
+fig, ax = plt.subplots(figsize=a1)
+plot= sns.barplot(x="Day_of_week", y="WeightKg", data=wl_info,palette ="deep")
+plot.set_xticklabels(ax.get_xticklabels(),rotation=90)
+plot.set_title('Total WeightKg During Each Day')
+ax.set_ylabel('Total WeightKg')
+ax.set_xlabel('Days')
+```
+
+
+- Weight Distributions (Kg)
+
+```{python, Viz16 Weight Distributions (Kg), eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Histogram for WeightKg
+plt.figure(figsize=(10, 6))
+sns.histplot(data=weight_log_info, x='WeightKg', bins=20, kde=True)
+plt.title('Weight Distribution (Kg)')
+plt.xlabel('Weight (Kg)')
+plt.ylabel('Frequency')
+plt.show()
+```
+
+
+- Weight (Pounds) by Report Type
+
+```{python, Viz17 Weight (Pounds) by Report Type, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a violin plot to compare WeightPounds for manual and automatic reports
+plt.figure(figsize=(8, 6))
+sns.violinplot(data=weight_log_info, x='IsManualReport', y='WeightPounds')
+plt.title('Weight (Pounds) by Report Type')
+plt.xlabel('Report Type (Manual or Automatic)')
+plt.ylabel('Weight (Pounds)')
+plt.show()
+```
+
+</details>
+
+
+
+## Visualizations and Analysis
+
+### Heatmaps Correlations
+A correlation heatmap is a graphical representation of a correlation matrix representing the correlation between different variables. The value of correlation can take any value from -1 to 1. Correlation between two random variables or bivariate data does not necessarily imply a causal relationship. We can see it as in ***Fig. 3*** below 👇
+
+![***Fig. 3.*** Heatmaps Correlations.](heatmap_correlations.png)
+
+### Very Active Minutes by Day of the Week
+Text
+
+![***Fig. 4.*** Very Active Minutes by Day of the Week.](veryactiveminutesbydayoftheweek.png)
+
+Text
+
+
+### Sedentary Minutes by Day of the Week
+Text
+
+![***Fig. 5.*** Sedentary Minutes by Day of the Week](sedentaryminutesbydayoftheweek.png)
+
+Text
+
+
+### Total Steps by Day of the Week
+Text
+
+![***Fig. 6.*** Total Steps by Day of the Week](totalstepsbydayoftheweek.png)
+
+Text
+
+
+### Relationship between Total Steps and Calories
+Text
+
+![***Fig. 7.*** Relationship between Total Steps and Calories](relationshipbetweentotalstepsandcalories.png)
+
+Text
+
+
+### Total Distance During Each day
+Text
+
+![***Fig. 8.*** Total Distance During Each day](totaldistanceduringeachday.png)
+
+Text
+
+
+### Total Distance by Month
+Text
+
+![***Fig. 9.*** Total Distance by Month](totaldistancebymonth.png)
+
+Text
+
+
+### Total Steps and Total Distance by Day of Week
+Text
+
+![***Fig. 10.*** Total Steps and Total Distance by Day of Week](totalstepsandtotaldistancebydayofweek.png)
+
+Text
+
+
+### Total Steps and Total Distance by Month
+Text
+
+![***Fig. 11.*** Total Steps and Total Distance by Month](totalstepsanddistancebymonth.png)
+
+Text
+
+
+### Average Activity Minutes by Day of Week
+Text
+
+![***Fig. 12.*** Average Activity Minutes by Day of Week](averageactivityminutesbydayofweek.png)
+
+Text
+
+
+### Total Calories During Each Day
+Text
+
+![***Fig. 13.*** Total Calories During Each Day](totalcaloriesduringeachday.png)
+
+Text
+
+
+### Total Calories by Month
+Text
+
+![***Fig. 14.*** Total Calories by Month](totalcaloriesbymonth.png)
+
+Text
+
+
+### Total Minutes A Sleep During Each Day
+Text
+
+![***Fig. 15.*** Total Minutes A Sleep During Each Day](totalminutessleepduringeachday.png)
+
+Text
+
+
+### Total Minutes A Sleep by Month
+Text
+
+![***Fig. 16.*** Total Minutes A Sleep by Month](totalminutesasleepbymonth.png)
+
+Text
+
+
+### Total WeightKg During Each Day
+Text
+
+![***Fig. 17.*** Total WeightKg During Each Day](totalweightKgduringday.png)
+
+Text
+
+
+### Weight Distributions (Kg)
+Text
+
+![***Fig. 18.*** Weight Distributions (Kg)](weightdistributions.png)
+
+Text
+
+
+### Weight (Pounds) by Report Type
+Text
+
+![***Fig. 19.*** Weight (Pounds) by Report Type](weightbyreporttype.png)
+
+Text
+
+

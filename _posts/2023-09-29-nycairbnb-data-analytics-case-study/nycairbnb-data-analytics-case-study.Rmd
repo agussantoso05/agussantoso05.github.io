@@ -37,7 +37,7 @@ This personal project is a case study given by RevoU in a mini course held for 2
 
 # Summary
 
-<center>![Fig. 1. Te Kahu, Wanaka, New Zealand](airbnb_luxe.webp){width=auto}</center>
+<center>![***Fig. 1.*** Te Kahu, Wanaka, New Zealand](airbnb_luxe.webp){width=auto}</center>
 
 Airbnb is an online marketplace that connects people who want to rent out their homes with people looking for accommodations in specific locales. The company has come a long way since 2007, when its co-founders first came up with the idea to invite paying guests to sleep on an air mattress in their living room. According to Airbnb's latest data, it now has more than 7 million listings, covering some 100,000 cities and towns in 220-plus countries and regions worldwide.
 
@@ -202,6 +202,7 @@ print(df.isnull().sum())
 <summary><b>Design Visualizations</b></summary>
 
 - Heatmap Correlations
+
 Correlation heatmaps are here to show us how closely related variables are.
 
 ```{python, Viz1 heatmap correlations, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -211,6 +212,7 @@ plt.show()
 ```
 
 - Count of Room Types by Neighbourhood Group
+
 To see room type by neighbourhood group
 
 ```{python, Viz2 count room type by neighbourhood group, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -225,6 +227,7 @@ plt.show()
 ```
 
 - Bar plot
+
 To shows Proportion of Airbnb listings across boroughs and room type.
 
 ```{python, Viz3 bar plot, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -244,6 +247,7 @@ plt.show()
 ```
 
 - Most Expensive
+
 To see where is the most expensive area?
 
 ```{python, Viz4 Most Expensive Area, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -256,7 +260,8 @@ fig.savefig('most_expensive_area.png', bbox_inches='tight')
 ```
 
 - Popular area?
-To seewhere is the most popular area based on availability?
+
+To see where is the most popular area based on availability?
 
 ```{python, Viz5 Most Popular Area Based on Availability, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 
@@ -275,6 +280,7 @@ plt.show()
 ```
 
 - Map Box
+
 Next, we can visualize it using a box map to see the distribution.
 
 ```{python, Viz6 Map Box, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -285,6 +291,7 @@ sns.scatterplot(x='longitude', y='latitude', hue='neighbourhood_group',s=20, dat
 ```
 
 - Top 5 Host Listing
+
 To see who the top 5 by calculated_host_listings_count
 
 ```{python, Viz7 top 5 host listing, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -336,6 +343,7 @@ This is Breakdown from Count of Room Types by Neighbourhood Group
 In this analysis, we explore the distribution of Airbnb listings across the five major boroughs of New York City: Manhattan, Bronx, Brooklyn, Queens, and Staten Island. We can see details in ***Fig. 4.***
 
 ![***Fig. 4.*** Proportion of Airbnb Listings Across Boroughs.](proportion of borough.png)
+
 Regarding boroughs in this graph ***Fig. 4.***, Manhattan and Brooklyn have the highest proportions of Airbnb listings, reflecting their status as top tourist destinations. Queens also boasts a significant number of listings, while the Bronx offers a more affordable alternative. Staten Island, with its suburban appeal, has the smallest share of Airbnb listings among the five boroughs. 
 
 #### Proportion of Airbnb listings across room_type
@@ -371,6 +379,7 @@ Please note that the specific rental prices can vary greatly within each borough
 The box plot analysis depicts the availability of Airbnb listings in the five major boroughs of New York City (Manhattan, Bronx, Brooklyn, Queens, and Staten Island). The 'availability_365' metric is used to measure the availability of listings throughout the year. We can see the details in ***Fig. 7.***
 
 ![***Fig. 7.*** The Most Popular Area Based On Availability.](most popular neighbourhood group based on availability.png)
+
 Looking at the above categorical box plot we can infer that the listings in State Island seems to be more available throughout the year to more than 300 days. On an average, these listings are available to around more 250 days every year followed by Bronx where every listings are available for around more 150 on an average every year.
 
 
@@ -406,10 +415,6 @@ Manhattan has the highest number of Entire home/apt listings, reflecting its pop
 ## Recomendations
 
 If you are looking for the most expensive locations you can come to Manhattan and Brooklyn or Queens. However, if you want to find the places with the highest availability in New York City, you can choose a location like the Bronx with an average of more than 150 days every year or State Island with an average of more than 250 days available every year.
-
-
-
-
 
 
 

@@ -12,7 +12,7 @@
       <link>https://agussantoso05.github.io/index.html</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>2023-09-28</lastBuildDate>
+    <lastBuildDate>2023-09-29</lastBuildDate>
     <item>
       <title>NYC AirBnB Data Analytics Case Study</title>
       <dc:creator>Agus Santoso</dc:creator>
@@ -22,8 +22,20 @@
       <category>Data Visualizations</category>
       <category>Marketing Analysis</category>
       <guid>https://agussantoso05.github.io/index.html/posts/2023-09-29-nycairbnb-data-analytics-case-study</guid>
-      <pubDate>2023-09-28</pubDate>
+      <pubDate>2023-09-29</pubDate>
       <media:content url="https://agussantoso05.github.io/index.html/posts/2023-09-29-nycairbnb-data-analytics-case-study/luxury_airbnb.webp" medium="image" type="application/octet-stream"/>
+    </item>
+    <item>
+      <title>Utilizing Health Tech Device Usage Trends to Inform Marketing Strategy: Bellabeat Analysis</title>
+      <dc:creator>Agus Santoso</dc:creator>
+      <link>https://agussantoso05.github.io/index.html/posts/2023-10-03-utilizing-health-tech-device-usage-trends-to-inform-marketing-strategy-bellabeat-analysis</link>
+      <description>To analyze smart device data to gain insight into how consumers are using their smart devices.</description>
+      <category>Python</category>
+      <category>Data Visualizations</category>
+      <category>Marketing Analysis</category>
+      <guid>https://agussantoso05.github.io/index.html/posts/2023-10-03-utilizing-health-tech-device-usage-trends-to-inform-marketing-strategy-bellabeat-analysis</guid>
+      <pubDate>2023-09-28</pubDate>
+      <media:content url="https://agussantoso05.github.io/index.html/posts/2023-10-03-utilizing-health-tech-device-usage-trends-to-inform-marketing-strategy-bellabeat-analysis/bellabeat.jpeg" medium="image" type="image/jpeg"/>
     </item>
     <item>
       <title>TimeSheet Monitoring Tracker</title>
