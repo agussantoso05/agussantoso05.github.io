@@ -4,7 +4,7 @@ description: |
   To analyze smart device data to gain insight into how consumers are using their smart devices.
 author:
   - name: Agus Santoso
-date: 2023-09-29
+date: 2023-10-3
 categories:
   - Python
   - Data Visualizations
