@@ -2337,278 +2337,223 @@ Fixing Error from data type ActivityDay –&gt; from object to date
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <ul>
-<li>Very Active Minutes by Day of the Week</li>
+<li>Average Activity Minutes</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the total VeryActiveMinutes for each day of the week</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>very_active_minutes_by_day <span class="op">=</span> daily_activity.groupby(<span class="st">&quot;Day_of_week&quot;</span>)[<span class="st">&quot;VeryActiveMinutes&quot;</span>].<span class="bu">sum</span>()</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of activity types to calculate the mean for</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>activity_types <span class="op">=</span> [<span class="st">&#39;VeryActiveMinutes&#39;</span>, <span class="st">&#39;FairlyActiveMinutes&#39;</span>, <span class="st">&#39;LightlyActiveMinutes&#39;</span>, <span class="st">&#39;SedentaryMinutes&#39;</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of days of the week in the desired order</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>days_of_week <span class="op">=</span> [<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>, <span class="st">&quot;Thursday&quot;</span>, <span class="st">&quot;Friday&quot;</span>, <span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average values for each activity type across all days</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>average_activity <span class="op">=</span> daily_activity[activity_types].mean()</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the tab10 colormap for the bars</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.tab10(<span class="bu">range</span>(<span class="bu">len</span>(days_of_week)))</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart to visualize the data</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.bar(days_of_week, very_active_minutes_by_day, color<span class="op">=</span>colors)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Day of the Week&quot;</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Very Active Minutes&quot;</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Very Active Minutes by Day of the Week&quot;</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create labels and values for the pie chart</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>activity_labels <span class="op">=</span> average_activity.index</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>activity_minutes <span class="op">=</span> average_activity.values</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the pie chart</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.pie(activity_minutes, labels<span class="op">=</span>activity_labels, autopct<span class="op">=</span><span class="st">&#39;</span><span class="sc">%1.1f%%</span><span class="st">&#39;</span>, startangle<span class="op">=</span><span class="dv">140</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Average Activity Minutes&#39;</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <ul>
-<li>Sedentary Minutes by Day of the Week</li>
+<li>Total Very Active Minutes During Each Day</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the total SedentaryMinutes for each day of the week</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sedentary_minutes_by_day <span class="op">=</span> daily_activity.groupby(<span class="st">&quot;Day_of_week&quot;</span>)[<span class="st">&quot;SedentaryMinutes&quot;</span>].<span class="bu">sum</span>()</span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a specific order for days of the week</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>days_order <span class="op">=</span> [<span class="st">&#39;Monday&#39;</span>, <span class="st">&#39;Tuesday&#39;</span>, <span class="st">&#39;Wednesday&#39;</span>, <span class="st">&#39;Thursday&#39;</span>, <span class="st">&#39;Friday&#39;</span>, <span class="st">&#39;Saturday&#39;</span>, <span class="st">&#39;Sunday&#39;</span>]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of days of the week in the desired order</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>days_of_week <span class="op">=</span> [<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>, <span class="st">&quot;Thursday&quot;</span>, <span class="st">&quot;Friday&quot;</span>, <span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Group and sum the Very Active Minutes for each day</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>veryactive_minutes <span class="op">=</span> daily_activity.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;VeryActiveMinutes&#39;</span>: <span class="st">&#39;sum&#39;</span>}).reindex(days_order).reset_index()</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the tab10 colormap for the bars</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.tab10(<span class="bu">range</span>(<span class="bu">len</span>(days_of_week)))</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart to visualize the data</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.bar(days_of_week, sedentary_minutes_by_day, color<span class="op">=</span>colors)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Day of the Week&quot;</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Sedentary Minutes&quot;</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Sedentary Minutes by Day of the Week&quot;</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the figure size</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;VeryActiveMinutes&quot;</span>, data<span class="op">=</span>veryactive_minutes, palette<span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate x-axis labels for better readability</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(), rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the title and labels</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total Very Active Minutes by Days&#39;</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total VeryActiveMinutes Sum&#39;</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
-<li>Total Steps by Day of the Week</li>
+<li>Total Sedentary Minutes During Each Day</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the total TotalSteps for each day of the week</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>total_steps_by_day <span class="op">=</span> daily_activity.groupby(<span class="st">&quot;Day_of_week&quot;</span>)[<span class="st">&quot;TotalSteps&quot;</span>].<span class="bu">sum</span>()</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a specific order for days of the week</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>days_order <span class="op">=</span> [<span class="st">&#39;Monday&#39;</span>, <span class="st">&#39;Tuesday&#39;</span>, <span class="st">&#39;Wednesday&#39;</span>, <span class="st">&#39;Thursday&#39;</span>, <span class="st">&#39;Friday&#39;</span>, <span class="st">&#39;Saturday&#39;</span>, <span class="st">&#39;Sunday&#39;</span>]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of days of the week in the desired order</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>days_of_week <span class="op">=</span> [<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>, <span class="st">&quot;Thursday&quot;</span>, <span class="st">&quot;Friday&quot;</span>, <span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Group and sum the SedentaryMinutes for each day</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sedentary_minutes <span class="op">=</span> daily_activity.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;SedentaryMinutes&#39;</span>: <span class="st">&#39;sum&#39;</span>}).reindex(days_order).reset_index()</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart to visualize the data</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.bar(days_of_week, total_steps_by_day)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Day of the Week&quot;</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Total Steps&quot;</span>)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Total Steps by Day of the Week&quot;</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the figure size</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;SedentaryMinutes&quot;</span>, data<span class="op">=</span>sedentary_minutes, palette<span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate x-axis labels for better readability</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(), rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the title and labels</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total Sedentary Minutes by Days&#39;</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total SedentaryMinutes Sum&#39;</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
-<li>Relationship between Total Steps and Calories</li>
+<li>Total Steps</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot using Seaborn</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>daily_activity, x<span class="op">=</span><span class="st">&quot;TotalSteps&quot;</span>, y<span class="op">=</span><span class="st">&quot;Calories&quot;</span>, hue<span class="op">=</span><span class="st">&quot;SedentaryMinutes&quot;</span>, palette<span class="op">=</span><span class="st">&quot;coolwarm&quot;</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Total Steps&quot;</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Calories&quot;</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Relationship between Total Steps and Calories&quot;</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a regression line (similar to geom_smooth in ggplot2)</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>daily_activity, x<span class="op">=</span><span class="st">&quot;TotalSteps&quot;</span>, y<span class="op">=</span><span class="st">&quot;Calories&quot;</span>, scatter<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span><span class="st">&quot;gray&quot;</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a specific order for days of the week</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>days_order <span class="op">=</span> [<span class="st">&#39;Monday&#39;</span>, <span class="st">&#39;Tuesday&#39;</span>, <span class="st">&#39;Wednesday&#39;</span>, <span class="st">&#39;Thursday&#39;</span>, <span class="st">&#39;Friday&#39;</span>, <span class="st">&#39;Saturday&#39;</span>, <span class="st">&#39;Sunday&#39;</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Group and sum the TotalSteps for each day</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>totalsteps_days <span class="op">=</span> daily_activity.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;TotalSteps&#39;</span>: <span class="st">&#39;sum&#39;</span>}).reindex(days_order).reset_index()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the figure size</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;TotalSteps&quot;</span>, data<span class="op">=</span>totalsteps_days, palette<span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate x-axis labels for better readability</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(), rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the title and labels</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total Steps by Days&#39;</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total Steps Sum&#39;</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
-<li>Total Distance During Each day</li>
+<li>Total Distance During Each Day</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>da_days <span class="op">=</span> daily_activity.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;TotalDistance&#39;</span>:<span class="st">&#39;sum&#39;</span>}).reset_index().sort_values(<span class="st">&#39;TotalDistance&#39;</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plot<span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;TotalDistance&quot;</span>, data<span class="op">=</span>da_days,palette <span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(),rotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total Distance During Each Day&#39;</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total Distance Sum&#39;</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
-</div>
-<ul>
-<li>Total Distance by Month</li>
-</ul>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>total_activity_by_month <span class="op">=</span> daily_activity.groupby(<span class="st">&#39;Month&#39;</span>)[<span class="st">&#39;TotalDistance&#39;</span>].<span class="bu">sum</span>().reset_index()</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Month&#39;</span>, y<span class="op">=</span><span class="st">&#39;TotalDistance&#39;</span>, data<span class="op">=</span>daily_activity)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Month&#39;</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Total Distance&#39;</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Total Distance by Month&#39;</span>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a specific order for days of the week</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>days_order <span class="op">=</span> [<span class="st">&#39;Monday&#39;</span>, <span class="st">&#39;Tuesday&#39;</span>, <span class="st">&#39;Wednesday&#39;</span>, <span class="st">&#39;Thursday&#39;</span>, <span class="st">&#39;Friday&#39;</span>, <span class="st">&#39;Saturday&#39;</span>, <span class="st">&#39;Sunday&#39;</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Group and sum the TotalDistance for each day</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>sedentary_minutes <span class="op">=</span> daily_activity.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;TotalDistance&#39;</span>: <span class="st">&#39;sum&#39;</span>}).reindex(days_order).reset_index()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the figure size</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;TotalDistance&quot;</span>, data<span class="op">=</span>sedentary_minutes, palette<span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate x-axis labels for better readability</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(), rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the title and labels</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total Distance by Days&#39;</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total Distance Sum&#39;</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Total Steps and Total Distance by Day of Week</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure and the primary y-axis</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Day_of_week&#39;</span>, y<span class="op">=</span><span class="st">&#39;TotalSteps&#39;</span>, data<span class="op">=</span>daily_activity, label<span class="op">=</span><span class="st">&#39;Total Steps&#39;</span>, color<span class="op">=</span><span class="st">&#39;skyblue&#39;</span>, ax<span class="op">=</span>ax1)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate a scaling factor for Total Distance</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>total_distance_max <span class="op">=</span> daily_activity[<span class="st">&#39;TotalDistance&#39;</span>].<span class="bu">max</span>()</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>scaling_factor <span class="op">=</span> daily_activity[<span class="st">&#39;TotalSteps&#39;</span>].<span class="bu">max</span>() <span class="op">/</span> total_distance_max</span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure and the primary y-axis</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Day_of_week&#39;</span>, y<span class="op">=</span><span class="st">&#39;TotalSteps&#39;</span>, data<span class="op">=</span>daily_activity, label<span class="op">=</span><span class="st">&#39;Total Steps&#39;</span>, color<span class="op">=</span><span class="st">&#39;skyblue&#39;</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate a scaling factor for Total Distance</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>total_distance_max <span class="op">=</span> daily_activity[<span class="st">&#39;TotalDistance&#39;</span>].<span class="bu">max</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>scaling_factor <span class="op">=</span> daily_activity[<span class="st">&#39;TotalSteps&#39;</span>].<span class="bu">max</span>() <span class="op">/</span> total_distance_max</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Total Distance (scaled) on the secondary y-axis</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>daily_activity[<span class="st">&#39;TotalDistance_scaled&#39;</span>] <span class="op">=</span> daily_activity[<span class="st">&#39;TotalDistance&#39;</span>] <span class="op">*</span> scaling_factor</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Day_of_week&#39;</span>, y<span class="op">=</span><span class="st">&#39;TotalDistance_scaled&#39;</span>, data<span class="op">=</span>daily_activity, label<span class="op">=</span><span class="st">&#39;Total Distance&#39;</span>, color<span class="op">=</span><span class="st">&#39;salmon&#39;</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize the plot</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Total Steps and Total Distance by Day of Week&#39;</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">&#39;Day of Week&#39;</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">&#39;Count&#39;</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+</div>
+<ul>
+<li>Relationship between Total Steps and Calories</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot using Seaborn</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>daily_activity, x<span class="op">=</span><span class="st">&quot;TotalSteps&quot;</span>, y<span class="op">=</span><span class="st">&quot;Calories&quot;</span>, hue<span class="op">=</span><span class="st">&quot;SedentaryMinutes&quot;</span>, palette<span class="op">=</span><span class="st">&quot;coolwarm&quot;</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Total Steps&quot;</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Calories&quot;</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Relationship between Total Steps and Calories&quot;</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Total Distance (scaled) on the secondary y-axis</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>daily_activity[<span class="st">&#39;TotalDistance_scaled&#39;</span>] <span class="op">=</span> daily_activity[<span class="st">&#39;TotalDistance&#39;</span>] <span class="op">*</span> scaling_factor</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Day_of_week&#39;</span>, y<span class="op">=</span><span class="st">&#39;TotalDistance_scaled&#39;</span>, data<span class="op">=</span>daily_activity, label<span class="op">=</span><span class="st">&#39;Total Distance&#39;</span>, color<span class="op">=</span><span class="st">&#39;salmon&#39;</span>, ax<span class="op">=</span>ax1)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize the plot</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Total Steps and Total Distance by Day of Week&#39;</span>)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">&#39;Day of Week&#39;</span>)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">&#39;Count&#39;</span>)</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-</div>
-<ul>
-<li>Total Steps and Total Distance by Month</li>
-</ul>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure and the primary y-axis</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Month&#39;</span>, y<span class="op">=</span><span class="st">&#39;TotalSteps&#39;</span>, data<span class="op">=</span>daily_activity, label<span class="op">=</span><span class="st">&#39;Total Steps&#39;</span>, color<span class="op">=</span><span class="st">&#39;skyblue&#39;</span>, ax<span class="op">=</span>ax1)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate a scaling factor for Total Distance</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>total_distance_max <span class="op">=</span> daily_activity[<span class="st">&#39;TotalDistance&#39;</span>].<span class="bu">max</span>()</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>scaling_factor <span class="op">=</span> daily_activity[<span class="st">&#39;TotalSteps&#39;</span>].<span class="bu">max</span>() <span class="op">/</span> total_distance_max</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Total Distance (scaled) on the secondary y-axis</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>daily_activity[<span class="st">&#39;TotalDistance_scaled&#39;</span>] <span class="op">=</span> daily_activity[<span class="st">&#39;TotalDistance&#39;</span>] <span class="op">*</span> scaling_factor</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Month&#39;</span>, y<span class="op">=</span><span class="st">&#39;TotalDistance_scaled&#39;</span>, data<span class="op">=</span>daily_activity, label<span class="op">=</span><span class="st">&#39;Total Distance&#39;</span>, color<span class="op">=</span><span class="st">&#39;salmon&#39;</span>, ax<span class="op">=</span>ax1)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize the plot</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Total Steps and Total Distance by Months&#39;</span>)</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">&#39;Month&#39;</span>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">&#39;Count&#39;</span>)</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-</div>
-<ul>
-<li>Average Activity Minutes by Day of Week</li>
-</ul>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average values for each activity type by Day_of_week</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>average_activity <span class="op">=</span> daily_activity.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;VeryActiveMinutes&#39;</span>: <span class="st">&#39;mean&#39;</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;FairlyActiveMinutes&#39;</span>: <span class="st">&#39;mean&#39;</span>,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;LightlyActiveMinutes&#39;</span>: <span class="st">&#39;mean&#39;</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;SedentaryMinutes&#39;</span>: <span class="st">&#39;mean&#39;</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>}).reset_index()</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the DataFrame to create a tidy format for plotting</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>melted_df <span class="op">=</span> pd.melt(average_activity, id_vars<span class="op">=</span><span class="st">&#39;Day_of_week&#39;</span>, var_name<span class="op">=</span><span class="st">&#39;Activity&#39;</span>, value_name<span class="op">=</span><span class="st">&#39;Minutes&#39;</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot with linear regression line</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">&#39;Day_of_week&#39;</span>, y<span class="op">=</span><span class="st">&#39;Minutes&#39;</span>, hue<span class="op">=</span><span class="st">&#39;Activity&#39;</span>, data<span class="op">=</span>melted_df, height<span class="op">=</span><span class="dv">6</span>, aspect<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize the plot</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Average Activity Minutes by Day of Week&#39;</span>)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Day of Week&#39;</span>)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Average Minutes&#39;</span>)</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">&#39;Activity Type&#39;</span>)</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-</div>
-<ul>
-<li>Total Calories During Each Day</li>
-</ul>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dc_days <span class="op">=</span> daily_calories.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;Calories&#39;</span>:<span class="st">&#39;sum&#39;</span>}).reset_index().sort_values(<span class="st">&#39;Calories&#39;</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plot<span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;Calories&quot;</span>, data<span class="op">=</span>dc_days,palette <span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(),rotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total Calories During Each Day&#39;</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total Calories&#39;</span>)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
-</div>
-<ul>
-<li>Total Calories by Month</li>
-</ul>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>total_calories_by_month <span class="op">=</span> daily_calories.groupby(<span class="st">&#39;Month&#39;</span>)[<span class="st">&#39;Calories&#39;</span>].<span class="bu">sum</span>().reset_index()</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Month&#39;</span>, y<span class="op">=</span><span class="st">&#39;Calories&#39;</span>, data<span class="op">=</span>daily_calories)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Month&#39;</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Total Calories&#39;</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Total Calories by Month&#39;</span>)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a regression line (similar to geom_smooth in ggplot2)</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>daily_activity, x<span class="op">=</span><span class="st">&quot;TotalSteps&quot;</span>, y<span class="op">=</span><span class="st">&quot;Calories&quot;</span>, scatter<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span><span class="st">&quot;gray&quot;</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <ul>
 <li>Total Minutes A Sleep During Each Day</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sd_days <span class="op">=</span> sleep_day.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;TotalMinutesAsleep&#39;</span>:<span class="st">&#39;sum&#39;</span>}).reset_index().sort_values(<span class="st">&#39;TotalMinutesAsleep&#39;</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plot<span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;TotalMinutesAsleep&quot;</span>, data<span class="op">=</span>sd_days,palette <span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(),rotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total Minutes A Sleep During Each Day&#39;</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total Minutes A Sleep&#39;</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sd_days <span class="op">=</span> sleep_day.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;TotalMinutesAsleep&#39;</span>:<span class="st">&#39;sum&#39;</span>}).reset_index().sort_values(<span class="st">&#39;TotalMinutesAsleep&#39;</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plot<span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;TotalMinutesAsleep&quot;</span>, data<span class="op">=</span>sd_days,palette <span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(),rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total Minutes A Sleep During Each Day&#39;</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total Minutes A Sleep&#39;</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
-<li>Total Minutes A Sleep by Month</li>
+<li>Percentage of People in Each BMI Category</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>total_sleep_day_by_month <span class="op">=</span> sleep_day.groupby(<span class="st">&#39;Month&#39;</span>)[<span class="st">&#39;TotalMinutesAsleep&#39;</span>].<span class="bu">sum</span>().reset_index()</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&#39;Month&#39;</span>, y<span class="op">=</span><span class="st">&#39;TotalMinutesAsleep&#39;</span>, data<span class="op">=</span>sleep_day)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Month&#39;</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Total Minutes A Sleep&#39;</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Total Minutes A Sleep by Month&#39;</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define BMI categories based on thresholds</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_bmi(bmi):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> bmi <span class="op">&lt;</span> <span class="fl">18.5</span>:</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">&#39;Underweight&#39;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="fl">18.5</span> <span class="op">&lt;=</span> bmi <span class="op">&lt;</span> <span class="fl">24.9</span>:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">&#39;Healthy Weight&#39;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="dv">25</span> <span class="op">&lt;=</span> bmi <span class="op">&lt;</span> <span class="fl">29.9</span>:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">&#39;Overweight&#39;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">&#39;Obese&#39;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the categorization to the BMI column</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>weight_log_info[<span class="st">&#39;BMI Category&#39;</span>] <span class="op">=</span> weight_log_info[<span class="st">&#39;BMI&#39;</span>].<span class="bu">apply</span>(categorize_bmi)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the percentage of individuals in each BMI category</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>category_counts <span class="op">=</span> weight_log_info[<span class="st">&#39;BMI Category&#39;</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a pie chart or a bar chart</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.pie(category_counts, labels<span class="op">=</span>category_counts.index, autopct<span class="op">=</span><span class="st">&#39;</span><span class="sc">%1.1f%%</span><span class="st">&#39;</span>, startangle<span class="op">=</span><span class="dv">140</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Percentage of People in Each BMI Category&#39;</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">&#39;equal&#39;</span>)  <span class="co"># Equal aspect ratio ensures the pie chart is circular.</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the chart</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <ul>
-<li>Total WeightKg During Each Day</li>
+<li>Weight Distribution (Kg)</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>wl_info <span class="op">=</span> weight_log_info.groupby(<span class="st">&#39;Day_of_week&#39;</span>).agg({<span class="st">&#39;WeightKg&#39;</span>:<span class="st">&#39;sum&#39;</span>}).reset_index().sort_values(<span class="st">&#39;WeightKg&#39;</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">6</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>a1)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plot<span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">&quot;Day_of_week&quot;</span>, y<span class="op">=</span><span class="st">&quot;WeightKg&quot;</span>, data<span class="op">=</span>wl_info,palette <span class="op">=</span><span class="st">&quot;deep&quot;</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>plot.set_xticklabels(ax.get_xticklabels(),rotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">&#39;Total WeightKg During Each Day&#39;</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Total WeightKg&#39;</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Days&#39;</span>)</span></code></pre></div>
-</div>
-<ul>
-<li>Weight Distributions (Kg)</li>
-</ul>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram for WeightKg</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>weight_log_info, x<span class="op">=</span><span class="st">&#39;WeightKg&#39;</span>, bins<span class="op">=</span><span class="dv">20</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Weight Distribution (Kg)&#39;</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Weight (Kg)&#39;</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Frequency&#39;</span>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-</div>
-<ul>
-<li>Weight (Pounds) by Report Type</li>
-</ul>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a violin plot to compare WeightPounds for manual and automatic reports</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>sns.violinplot(data<span class="op">=</span>weight_log_info, x<span class="op">=</span><span class="st">&#39;IsManualReport&#39;</span>, y<span class="op">=</span><span class="st">&#39;WeightPounds&#39;</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Weight (Pounds) by Report Type&#39;</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Report Type (Manual or Automatic)&#39;</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Weight (Pounds)&#39;</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram for WeightKg</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>weight_log_info, x<span class="op">=</span><span class="st">&#39;WeightKg&#39;</span>, bins<span class="op">=</span><span class="dv">20</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Weight Distribution (Kg)&#39;</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Weight (Kg)&#39;</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Frequency&#39;</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 </details>
 <h2 id="visualizations-and-analysis">Visualizations and Analysis</h2>
@@ -2624,7 +2569,7 @@ Fixing Error from data type ActivityDay –&gt; from object to date
 <img src="averageactivityminutes.png" alt="Fig. 4. Average Activity Minutes." />
 <figcaption aria-hidden="true"><strong><em>Fig. 4.</em></strong> Average Activity Minutes.</figcaption>
 </figure>
-<p>The data extracted from the pie chart concerning average activity minutes paints a striking picture of user habits. It becomes immediately apparent that the vast majority of users, approximately 81.3%, tend to spend a substantial portion of their daily routines in sedentary minutes activities. This is a significant concern as prolonged periods of inactivity can have adverse effects on overall health. Conversely, the chart also reveals a rather alarming statistic: a mere 1.74% of users actively engage in very active minutes.</p>
+<p>The data extracted from the pie chart concerning average activity minutes paints a striking picture of user habits. It becomes immediately apparent that the vast majority of users, approximately 81.3%, tend to spend a substantial portion of their daily routines in sedentary minutes activities. This is a significant concern as prolonged periods of inactivity can have adverse effects on overall health. Conversely, the chart also reveals a rather alarming statistic: a mere 1.7% of users actively engage in very active minutes.</p>
 <h3 id="total-very-active-minutes-during-each-day">Total Very Active Minutes During Each Day</h3>
 <p>In our analysis of the Bellabeat dataset, we examined the distribution of ‘Very Active Minutes’ across different days of the week.</p>
 <figure>
@@ -2656,8 +2601,8 @@ Fixing Error from data type ActivityDay –&gt; from object to date
 <img src="totalstepsanddistance.png" alt="Fig. 9. Total Steps and Total Distance by Day of Week." />
 <figcaption aria-hidden="true"><strong><em>Fig. 9.</em></strong> Total Steps and Total Distance by Day of Week.</figcaption>
 </figure>
-<h3 id="relationship-between-total-steps-and-calories">Relationship between Total Steps and Calories</h3>
-<p>In our exploration of the Bellabeat dataset, we uncovered a fascinating relationship between ‘Total Steps’ and ‘Calories Burned.’ While the conventional wisdom suggests that more steps lead to more calories burned, our analysis revealed a counterintuitive trend. We observed that certain users, classified as sedentary due to their minimum step count, were still able to burn a significant number of calories, often falling within the range of 1500 to 2500 calories. In contrast, some more active users, who took significantly more steps, burned calories in a similar range. We can see it as details in <strong><em>Fig. 10</em></strong> below.</p>
+<h3 id="relationship-between-total-steps-and-calories-burned">Relationship between Total Steps and Calories Burned</h3>
+<p>In our exploration of the Bellabeat dataset, we uncovered a fascinating relationship between ‘Total Steps’ and ‘Calories Burned.’ While the conventional wisdom suggests that more steps lead to more calories burned, our analysis revealed a counter intuitive trend. We observed that certain users, classified as sedentary due to their minimum step count, were still able to burn a significant number of calories, often falling within the range of 1500 to 2500 calories. In contrast, some more active users, who took significantly more steps, burned calories in a similar range. We can see it as details in <strong><em>Fig. 10</em></strong> below.</p>
 <figure>
 <img src="relationshipbetweentotalstepsandcalories.png" alt="Fig. 10. Relationship between Total Steps and Calories." />
 <figcaption aria-hidden="true"><strong><em>Fig. 10.</em></strong> Relationship between Total Steps and Calories.</figcaption>
@@ -2669,27 +2614,27 @@ Fixing Error from data type ActivityDay –&gt; from object to date
 <img src="totalminutesasleep.png" alt="Fig. 11. Total Minutes A Sleep During Each Day." />
 <figcaption aria-hidden="true"><strong><em>Fig. 11.</em></strong> Total Minutes A Sleep During Each Day.</figcaption>
 </figure>
-<h3 id="relationship-between-total-steps-and-calories-1">Relationship between Total Steps and Calories</h3>
+<h3 id="percentage-of-people-in-each-bmi-category">Percentage of People in Each BMI Category</h3>
 <p>Within our dataset by randomly adding the contents of the <strong><em>‘Fat’</em></strong> column we obtained,</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Fixing Error <span class="cf">with</span> Missing Values (NaN)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Notes: The NA value <span class="kw">is</span> detected <span class="kw">in</span> the Fat section. I am going to fill the NA values based on the avaliable ones.</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>weight_log_info[<span class="st">&#39;Fat&#39;</span>].value_counts()</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fl">22.0</span>    <span class="dv">1</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fl">25.0</span>    <span class="dv">1</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>Name: Fat, dtype: int64</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Replace the missing &#39;Fat&#39; values by values between 22 and 25</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>weight_log_info[<span class="st">&#39;Fat&#39;</span>] <span class="op">=</span> weight_log_info[<span class="st">&#39;Fat&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: random.randint(<span class="dv">22</span>, <span class="dv">25</span>))</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>weight_log_info[<span class="st">&#39;Fat&#39;</span>].value_counts()</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>output</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span>    <span class="dv">21</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span>    <span class="dv">16</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="dv">24</span>    <span class="dv">16</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span>    <span class="dv">14</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>Name: Fat, dtype: int64</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Fixing Error <span class="cf">with</span> Missing Values (NaN)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Notes: The NA value <span class="kw">is</span> detected <span class="kw">in</span> the Fat section. I am going to fill the NA values based on the avaliable ones.</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>weight_log_info[<span class="st">&#39;Fat&#39;</span>].value_counts()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fl">22.0</span>    <span class="dv">1</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fl">25.0</span>    <span class="dv">1</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>Name: Fat, dtype: int64</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Replace the missing &#39;Fat&#39; values by values between 22 and 25</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>weight_log_info[<span class="st">&#39;Fat&#39;</span>] <span class="op">=</span> weight_log_info[<span class="st">&#39;Fat&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: random.randint(<span class="dv">22</span>, <span class="dv">25</span>))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>weight_log_info[<span class="st">&#39;Fat&#39;</span>].value_counts()</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>output</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span>    <span class="dv">21</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span>    <span class="dv">16</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="dv">24</span>    <span class="dv">16</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span>    <span class="dv">14</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>Name: Fat, dtype: int64</span></code></pre></div>
 </div>
 <p>output, 23 = 21 column, 22 = 16 column, 24 = 16 column, 25 = 14 column. We can see it as details in <strong><em>Fig. 12</em></strong> below.</p>
 <figure>
@@ -2711,7 +2656,21 @@ Fixing Error from data type ActivityDay –&gt; from object to date
 <p>Upon examination, we observed a bell-shaped distribution, suggesting that the majority of users have weights clustered around a central value. This central tendency in weight is a common characteristic of populations, with most individuals maintaining weights close to the average.</p>
 <p>Furthermore, the histogram revealed that the dataset includes a range of weights, from the lower end to the higher end of the scale. This diversity in weight distribution is essential for tailoring health and fitness recommendations to address the unique needs of individuals with varying weight profiles.</p>
 <p>Overall, the ‘WeightKg’ histogram serves as a valuable tool for understanding the weight distribution within the dataset and can inform strategies for promoting and supporting healthy weight management among users.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>This analysis provides valuable insights into user behavior and engagement patterns.</p>
+<ul>
+<li><p>In ‘Very Active Minutes’ it is clear that users tend to accumulate more ‘Very Active Minutes’ during weekdays, with Tuesday standing out as the days when users are most active. This may suggest that users prioritize physical activity during the early part of the week.</p></li>
+<li><p>In our exploration, we uncovered a fascinating relationship between ‘Total Steps’ and ‘Calories Burned.’ While the conventional wisdom suggests that more steps lead to more calories burned, our analysis revealed a counter intuitive trend. We observed that certain users, classified as sedentary due to their minimum step count, were still able to burn a significant number of calories, often falling within the range of 1500 to 2500 calories.</p></li>
+<li><p>Within our dataset, a noteworthy observation emerges about Percentage of People in Each BMI Category: a majority of individuals, comprising 50.7%, are classified as being within the healthy weight range. This percentage is notably higher than the 47.8% of individuals categorized as overweight and the 1.5% who fall into the obese category.</p></li>
+</ul>
+<h2 id="observations">Observations</h2>
+<p>The Bellabeat dataset is a comprehensive health and fitness dataset that includes fitness tracking, sleep patterns, total steps, calories, even weight. This makes it a valuable resource for individuals who want to make informed decisions about their health.</p>
+<h2 id="recomendations">Recomendations</h2>
+<p>Bellabeat has the capability to notify users regarding their inactive lifestyle through either the mobile app or directly on the fitness tracker. Given that a significant 81.3% of users do not currently utilize the device for monitoring their health routines, this data could prove highly valuable for devising effective marketing strategies.</p>
+<center>
+<strong>THANK YOU 🙌</strong>
+</center>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

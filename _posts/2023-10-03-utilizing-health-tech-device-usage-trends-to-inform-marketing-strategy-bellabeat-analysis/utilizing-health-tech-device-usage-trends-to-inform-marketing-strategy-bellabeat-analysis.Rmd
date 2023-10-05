@@ -201,112 +201,130 @@ sns.heatmap(daily_activity.corr(), cmap='Greens', annot=True,)
 plt.show()
 ```
 
-- Very Active Minutes by Day of the Week
+- Average Activity Minutes
 
-```{python, Viz2 veryactiveminutesbyday, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-# Calculate the total VeryActiveMinutes for each day of the week
-very_active_minutes_by_day = daily_activity.groupby("Day_of_week")["VeryActiveMinutes"].sum()
+```{python, Viz2 Average Activity Minutes, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# List of activity types to calculate the mean for
+activity_types = ['VeryActiveMinutes', 'FairlyActiveMinutes', 'LightlyActiveMinutes', 'SedentaryMinutes']
 
-# Create a list of days of the week in the desired order
-days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+# Calculate the average values for each activity type across all days
+average_activity = daily_activity[activity_types].mean()
 
-# Use the tab10 colormap for the bars
-colors = plt.cm.tab10(range(len(days_of_week)))
+# Create labels and values for the pie chart
+activity_labels = average_activity.index
+activity_minutes = average_activity.values
 
-# Create a bar chart to visualize the data
-plt.figure(figsize=(10, 6))
-plt.bar(days_of_week, very_active_minutes_by_day, color=colors)
-plt.xlabel("Day of the Week")
-plt.ylabel("Very Active Minutes")
-plt.title("Very Active Minutes by Day of the Week")
+# Create the pie chart
+plt.figure(figsize=(8, 8))
+plt.pie(activity_minutes, labels=activity_labels, autopct='%1.1f%%', startangle=140)
+plt.title('Average Activity Minutes')
 plt.show()
 ```
 
-- Sedentary Minutes by Day of the Week
+- Total Very Active Minutes During Each Day
 
-```{python, Viz3 sedentaryminutesbyday, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-# Calculate the total SedentaryMinutes for each day of the week
-sedentary_minutes_by_day = daily_activity.groupby("Day_of_week")["SedentaryMinutes"].sum()
+```{python, Viz3 Total Very Active Minutes During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a specific order for days of the week
+days_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-# Create a list of days of the week in the desired order
-days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+# Group and sum the Very Active Minutes for each day
+veryactive_minutes = daily_activity.groupby('Day_of_week').agg({'VeryActiveMinutes': 'sum'}).reindex(days_order).reset_index()
 
-# Use the tab10 colormap for the bars
-colors = plt.cm.tab10(range(len(days_of_week)))
-
-# Create a bar chart to visualize the data
-plt.figure(figsize=(10, 6))
-plt.bar(days_of_week, sedentary_minutes_by_day, color=colors)
-plt.xlabel("Day of the Week")
-plt.ylabel("Sedentary Minutes")
-plt.title("Sedentary Minutes by Day of the Week")
-plt.show()
-```
-
-- Total Steps by Day of the Week
-
-```{python, Viz4 totalstepsbyday, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-# Calculate the total TotalSteps for each day of the week
-total_steps_by_day = daily_activity.groupby("Day_of_week")["TotalSteps"].sum()
-
-# Create a list of days of the week in the desired order
-days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
-# Create a bar chart to visualize the data
-plt.figure(figsize=(10, 6))
-plt.bar(days_of_week, total_steps_by_day)
-plt.xlabel("Day of the Week")
-plt.ylabel("Total Steps")
-plt.title("Total Steps by Day of the Week")
-plt.show()
-```
-
-- Relationship between Total Steps and Calories
-
-```{python, Viz5 relations between calories and total step, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-# Create a scatter plot using Seaborn
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=daily_activity, x="TotalSteps", y="Calories", hue="SedentaryMinutes", palette="coolwarm", alpha=0.7)
-plt.xlabel("Total Steps")
-plt.ylabel("Calories")
-plt.title("Relationship between Total Steps and Calories")
-plt.grid(True)
-
-# Add a regression line (similar to geom_smooth in ggplot2)
-sns.regplot(data=daily_activity, x="TotalSteps", y="Calories", scatter=False, color="gray")
-
-plt.show()
-```
-
-- Total Distance During Each day
-
-```{python, Viz6 Total Distance During Each day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-da_days = daily_activity.groupby('Day_of_week').agg({'TotalDistance':'sum'}).reset_index().sort_values('TotalDistance',ascending = False)
-
+# Set the figure size
 a1 = (8, 6)
 fig, ax = plt.subplots(figsize=a1)
-plot= sns.barplot(x="Day_of_week", y="TotalDistance", data=da_days,palette ="deep")
-plot.set_xticklabels(ax.get_xticklabels(),rotation=90)
-plot.set_title('Total Distance During Each Day')
+
+# Create the bar plot
+plot = sns.barplot(x="Day_of_week", y="VeryActiveMinutes", data=veryactive_minutes, palette="deep")
+
+# Rotate x-axis labels for better readability
+plot.set_xticklabels(ax.get_xticklabels(), rotation=90)
+
+# Set the title and labels
+plot.set_title('Total Very Active Minutes by Days')
+ax.set_ylabel('Total VeryActiveMinutes Sum')
+ax.set_xlabel('Days')
+```
+
+- Total Sedentary Minutes During Each Day
+
+```{python, Viz4 Total Sedentary Minutes During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a specific order for days of the week
+days_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+# Group and sum the SedentaryMinutes for each day
+sedentary_minutes = daily_activity.groupby('Day_of_week').agg({'SedentaryMinutes': 'sum'}).reindex(days_order).reset_index()
+
+# Set the figure size
+a1 = (8, 6)
+fig, ax = plt.subplots(figsize=a1)
+
+# Create the bar plot
+plot = sns.barplot(x="Day_of_week", y="SedentaryMinutes", data=sedentary_minutes, palette="deep")
+
+# Rotate x-axis labels for better readability
+plot.set_xticklabels(ax.get_xticklabels(), rotation=90)
+
+# Set the title and labels
+plot.set_title('Total Sedentary Minutes by Days')
+ax.set_ylabel('Total SedentaryMinutes Sum')
+ax.set_xlabel('Days')
+```
+
+- Total Steps
+
+```{python, Viz5 Total step, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a specific order for days of the week
+days_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+# Group and sum the TotalSteps for each day
+totalsteps_days = daily_activity.groupby('Day_of_week').agg({'TotalSteps': 'sum'}).reindex(days_order).reset_index()
+
+# Set the figure size
+a1 = (8, 6)
+fig, ax = plt.subplots(figsize=a1)
+
+# Create the bar plot
+plot = sns.barplot(x="Day_of_week", y="TotalSteps", data=totalsteps_days, palette="deep")
+
+# Rotate x-axis labels for better readability
+plot.set_xticklabels(ax.get_xticklabels(), rotation=90)
+
+# Set the title and labels
+plot.set_title('Total Steps by Days')
+ax.set_ylabel('Total Steps Sum')
+ax.set_xlabel('Days')
+```
+
+- Total Distance During Each Day
+
+```{python, Viz6 Total Distance During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a specific order for days of the week
+days_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+# Group and sum the TotalDistance for each day
+sedentary_minutes = daily_activity.groupby('Day_of_week').agg({'TotalDistance': 'sum'}).reindex(days_order).reset_index()
+
+# Set the figure size
+a1 = (8, 6)
+fig, ax = plt.subplots(figsize=a1)
+
+# Create the bar plot
+plot = sns.barplot(x="Day_of_week", y="TotalDistance", data=sedentary_minutes, palette="deep")
+
+# Rotate x-axis labels for better readability
+plot.set_xticklabels(ax.get_xticklabels(), rotation=90)
+
+# Set the title and labels
+plot.set_title('Total Distance by Days')
 ax.set_ylabel('Total Distance Sum')
 ax.set_xlabel('Days')
 ```
 
-- Total Distance by Month
-
-```{python, Viz7 Total Distance by Month, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-plt.figure(figsize=(8, 6))
-total_activity_by_month = daily_activity.groupby('Month')['TotalDistance'].sum().reset_index()
-sns.barplot(x='Month', y='TotalDistance', data=daily_activity)
-plt.xlabel('Month')
-plt.ylabel('Total Distance')
-plt.title('Total Distance by Month')
-plt.show()
-```
-
 - Total Steps and Total Distance by Day of Week
 
-```{python, Viz8 Total Steps and Total Distance by Day of Week, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{python, Viz7 Total Steps and Total Distance by Day of Week, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
 # Create a figure and the primary y-axis
 fig, ax1 = plt.subplots(figsize=(10, 6))
 sns.barplot(x='Day_of_week', y='TotalSteps', data=daily_activity, label='Total Steps', color='skyblue', ax=ax1)
@@ -330,91 +348,26 @@ plt.tight_layout()
 plt.show()
 ```
 
-- Total Steps and Total Distance by Month
+- Relationship between Total Steps and Calories
 
-```{python, Viz9 Total Steps and Total Distance by Month, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-# Create a figure and the primary y-axis
-fig, ax1 = plt.subplots(figsize=(10, 6))
-sns.barplot(x='Month', y='TotalSteps', data=daily_activity, label='Total Steps', color='skyblue', ax=ax1)
-
-# Calculate a scaling factor for Total Distance
-total_distance_max = daily_activity['TotalDistance'].max()
-scaling_factor = daily_activity['TotalSteps'].max() / total_distance_max
-
-# Plot Total Distance (scaled) on the secondary y-axis
-daily_activity['TotalDistance_scaled'] = daily_activity['TotalDistance'] * scaling_factor
-sns.barplot(x='Month', y='TotalDistance_scaled', data=daily_activity, label='Total Distance', color='salmon', ax=ax1)
-
-# Customize the plot
-plt.title('Total Steps and Total Distance by Months')
-ax1.set_xlabel('Month')
-ax1.set_ylabel('Count')
+```{python, Viz8 Relationship between Total Steps and Calories, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Create a scatter plot using Seaborn
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=daily_activity, x="TotalSteps", y="Calories", hue="SedentaryMinutes", palette="coolwarm", alpha=0.7)
+plt.xlabel("Total Steps")
+plt.ylabel("Calories")
+plt.title("Relationship between Total Steps and Calories")
 plt.grid(True)
 
-# Show the plot
-plt.tight_layout()
+# Add a regression line (similar to geom_smooth in ggplot2)
+sns.regplot(data=daily_activity, x="TotalSteps", y="Calories", scatter=False, color="gray")
+
 plt.show()
 ```
-
-- Average Activity Minutes by Day of Week
-
-```{python, Viz10 Average Activity Minutes by Day of Week, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-# Calculate the average values for each activity type by Day_of_week
-average_activity = daily_activity.groupby('Day_of_week').agg({
-    'VeryActiveMinutes': 'mean',
-    'FairlyActiveMinutes': 'mean',
-    'LightlyActiveMinutes': 'mean',
-    'SedentaryMinutes': 'mean'
-}).reset_index()
-
-# Melt the DataFrame to create a tidy format for plotting
-melted_df = pd.melt(average_activity, id_vars='Day_of_week', var_name='Activity', value_name='Minutes')
-
-# Create a scatter plot with linear regression line
-plt.figure(figsize=(10, 6))
-sns.lmplot(x='Day_of_week', y='Minutes', hue='Activity', data=melted_df, height=6, aspect=1.5)
-
-# Customize the plot
-plt.title('Average Activity Minutes by Day of Week')
-plt.xlabel('Day of Week')
-plt.ylabel('Average Minutes')
-plt.legend(title='Activity Type')
-
-# Show the plot
-plt.tight_layout()
-plt.show()
-```
-
-- Total Calories During Each Day
-
-```{python, Viz11 Total Calories During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dc_days = daily_calories.groupby('Day_of_week').agg({'Calories':'sum'}).reset_index().sort_values('Calories',ascending = False)
-
-a1 = (8, 6)
-fig, ax = plt.subplots(figsize=a1)
-plot= sns.barplot(x="Day_of_week", y="Calories", data=dc_days,palette ="deep")
-plot.set_xticklabels(ax.get_xticklabels(),rotation=90)
-plot.set_title('Total Calories During Each Day')
-ax.set_ylabel('Total Calories')
-ax.set_xlabel('Days')
-```
-
-- Total Calories by Month
-
-```{python, Viz12 Total Calories by Month, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-plt.figure(figsize=(8, 6))
-total_calories_by_month = daily_calories.groupby('Month')['Calories'].sum().reset_index()
-sns.barplot(x='Month', y='Calories', data=daily_calories)
-plt.xlabel('Month')
-plt.ylabel('Total Calories')
-plt.title('Total Calories by Month')
-plt.show()
-```
-
 
 - Total Minutes A Sleep During Each Day
 
-```{python, Viz13 Total Minutes A Sleep During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{python, Viz9 Total Minutes A Sleep During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 sd_days = sleep_day.groupby('Day_of_week').agg({'TotalMinutesAsleep':'sum'}).reset_index().sort_values('TotalMinutesAsleep',ascending = False)
 
 a1 = (8, 6)
@@ -426,38 +379,39 @@ ax.set_ylabel('Total Minutes A Sleep')
 ax.set_xlabel('Days')
 ```
 
+- Percentage of People in Each BMI Category
 
-- Total Minutes A Sleep by Month
+```{python, Viz10 Percentage of People in Each BMI Category, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Define BMI categories based on thresholds
+def categorize_bmi(bmi):
+    if bmi < 18.5:
+        return 'Underweight'
+    elif 18.5 <= bmi < 24.9:
+        return 'Healthy Weight'
+    elif 25 <= bmi < 29.9:
+        return 'Overweight'
+    else:
+        return 'Obese'
 
-```{python, Viz14 Total Minutes A Sleep by Month, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-plt.figure(figsize=(8, 6))
-total_sleep_day_by_month = sleep_day.groupby('Month')['TotalMinutesAsleep'].sum().reset_index()
-sns.barplot(x='Month', y='TotalMinutesAsleep', data=sleep_day)
-plt.xlabel('Month')
-plt.ylabel('Total Minutes A Sleep')
-plt.title('Total Minutes A Sleep by Month')
+# Apply the categorization to the BMI column
+weight_log_info['BMI Category'] = weight_log_info['BMI'].apply(categorize_bmi)
+
+# Calculate the percentage of individuals in each BMI category
+category_counts = weight_log_info['BMI Category'].value_counts(normalize=True) * 100
+
+# Create a pie chart or a bar chart
+plt.figure(figsize=(8, 8))
+plt.pie(category_counts, labels=category_counts.index, autopct='%1.1f%%', startangle=140)
+plt.title('Percentage of People in Each BMI Category')
+plt.axis('equal')  # Equal aspect ratio ensures the pie chart is circular.
+
+# Show the chart
 plt.show()
 ```
 
+- Weight Distribution (Kg)
 
-- Total WeightKg During Each Day
-
-```{python, Viz15 Total WeightKg During Each Day, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-wl_info = weight_log_info.groupby('Day_of_week').agg({'WeightKg':'sum'}).reset_index().sort_values('WeightKg',ascending = False)
-
-a1 = (8, 6)
-fig, ax = plt.subplots(figsize=a1)
-plot= sns.barplot(x="Day_of_week", y="WeightKg", data=wl_info,palette ="deep")
-plot.set_xticklabels(ax.get_xticklabels(),rotation=90)
-plot.set_title('Total WeightKg During Each Day')
-ax.set_ylabel('Total WeightKg')
-ax.set_xlabel('Days')
-```
-
-
-- Weight Distributions (Kg)
-
-```{python, Viz16 Weight Distributions (Kg), eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{python, Viz11 Weight Distribution (Kg), eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 # Histogram for WeightKg
 plt.figure(figsize=(10, 6))
 sns.histplot(data=weight_log_info, x='WeightKg', bins=20, kde=True)
@@ -467,18 +421,6 @@ plt.ylabel('Frequency')
 plt.show()
 ```
 
-
-- Weight (Pounds) by Report Type
-
-```{python, Viz17 Weight (Pounds) by Report Type, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-# Create a violin plot to compare WeightPounds for manual and automatic reports
-plt.figure(figsize=(8, 6))
-sns.violinplot(data=weight_log_info, x='IsManualReport', y='WeightPounds')
-plt.title('Weight (Pounds) by Report Type')
-plt.xlabel('Report Type (Manual or Automatic)')
-plt.ylabel('Weight (Pounds)')
-plt.show()
-```
 
 </details>
 
@@ -497,7 +439,7 @@ The pie chart displays the distribution of active minutes across four categories
 
 ![***Fig. 4.*** Average Activity Minutes.](averageactivityminutes.png)
 
-The data extracted from the pie chart concerning average activity minutes paints a striking picture of user habits. It becomes immediately apparent that the vast majority of users, approximately 81.3%, tend to spend a substantial portion of their daily routines in sedentary minutes activities. This is a significant concern as prolonged periods of inactivity can have adverse effects on overall health. Conversely, the chart also reveals a rather alarming statistic: a mere 1.74% of users actively engage in very active minutes.
+The data extracted from the pie chart concerning average activity minutes paints a striking picture of user habits. It becomes immediately apparent that the vast majority of users, approximately 81.3%, tend to spend a substantial portion of their daily routines in sedentary minutes activities. This is a significant concern as prolonged periods of inactivity can have adverse effects on overall health. Conversely, the chart also reveals a rather alarming statistic: a mere 1.7% of users actively engage in very active minutes.
 
 
 ### Total Very Active Minutes During Each Day
@@ -536,9 +478,9 @@ The bar graph show with Total Distance and Total Steps During Each Day.
 ![***Fig. 9.*** Total Steps and Total Distance by Day of Week.](totalstepsanddistance.png)
 
 
-### Relationship between Total Steps and Calories
+### Relationship between Total Steps and Calories Burned
 
-In our exploration of the Bellabeat dataset, we uncovered a fascinating relationship between 'Total Steps' and 'Calories Burned.' While the conventional wisdom suggests that more steps lead to more calories burned, our analysis revealed a counterintuitive trend. We observed that certain users, classified as sedentary due to their minimum step count, were still able to burn a significant number of calories, often falling within the range of 1500 to 2500 calories. In contrast, some more active users, who took significantly more steps, burned calories in a similar range. We can see it as details in ***Fig. 10*** below.
+In our exploration of the Bellabeat dataset, we uncovered a fascinating relationship between 'Total Steps' and 'Calories Burned.' While the conventional wisdom suggests that more steps lead to more calories burned, our analysis revealed a counter intuitive trend. We observed that certain users, classified as sedentary due to their minimum step count, were still able to burn a significant number of calories, often falling within the range of 1500 to 2500 calories. In contrast, some more active users, who took significantly more steps, burned calories in a similar range. We can see it as details in ***Fig. 10*** below.
 
 ![***Fig. 10.*** Relationship between Total Steps and Calories.](relationshipbetweentotalstepsandcalories.png)
 
@@ -552,7 +494,7 @@ The bar graph show with Total Minutes A Sleep During Each Day highest on Wednesd
 ![***Fig. 11.*** Total Minutes A Sleep During Each Day.](totalminutesasleep.png)
 
 
-### Relationship between Total Steps and Calories
+### Percentage of People in Each BMI Category
 
 Within our dataset by randomly adding the contents of the ***'Fat'*** column we obtained,
 
@@ -603,6 +545,28 @@ Overall, the 'WeightKg' histogram serves as a valuable tool for understanding th
 
 
 
+## Conclusion
 
+This analysis provides valuable insights into user behavior and engagement patterns.
+
+- In 'Very Active Minutes' it is clear that users tend to accumulate more 'Very Active Minutes' during weekdays, with Tuesday standing out as the days when users are most active. This may suggest that users prioritize physical activity during the early part of the week.
+
+- In our exploration, we uncovered a fascinating relationship between 'Total Steps' and 'Calories Burned.' While the conventional wisdom suggests that more steps lead to more calories burned, our analysis revealed a counter intuitive trend. We observed that certain users, classified as sedentary due to their minimum step count, were still able to burn a significant number of calories, often falling within the range of 1500 to 2500 calories.
+
+- Within our dataset, a noteworthy observation emerges about Percentage of People in Each BMI Category: a majority of individuals, comprising 50.7%, are classified as being within the healthy weight range. This percentage is notably higher than the 47.8% of individuals categorized as overweight and the 1.5% who fall into the obese category.
+
+
+## Observations
+
+The Bellabeat dataset is a comprehensive health and fitness dataset that includes fitness tracking, sleep patterns, total steps, calories, even weight. This makes it a valuable resource for individuals who want to make informed decisions about their health.
+
+## Recomendations
+
+Bellabeat has the capability to notify users regarding their inactive lifestyle through either the mobile app or directly on the fitness tracker. Given that a significant 81.3% of users do not currently utilize the device for monitoring their health routines, this data could prove highly valuable for devising effective marketing strategies.
+
+
+
+
+<center> **THANK YOU 🙌** </center>
 
 
