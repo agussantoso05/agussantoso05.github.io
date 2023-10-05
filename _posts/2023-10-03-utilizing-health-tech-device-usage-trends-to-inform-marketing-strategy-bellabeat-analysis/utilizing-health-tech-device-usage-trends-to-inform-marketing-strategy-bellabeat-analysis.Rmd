@@ -491,131 +491,118 @@ A correlation heatmap is a graphical representation of a correlation matrix repr
 
 ![***Fig. 3.*** Heatmaps Correlations.](heatmap_correlations.png)
 
-### Very Active Minutes by Day of the Week
-Text
+### Average Actvity Minutes
 
-![***Fig. 4.*** Very Active Minutes by Day of the Week.](veryactiveminutesbydayoftheweek.png)
+The pie chart displays the distribution of active minutes across four categories: Very Active Minutes, Fairly Active Minutes, Lightly Active Minutes, Sedentary Minutes. We can see it as details in ***Fig. 4*** below.
 
-Text
+![***Fig. 4.*** Average Activity Minutes.](averageactivityminutes.png)
 
-
-### Sedentary Minutes by Day of the Week
-Text
-
-![***Fig. 5.*** Sedentary Minutes by Day of the Week](sedentaryminutesbydayoftheweek.png)
-
-Text
+The data extracted from the pie chart concerning average activity minutes paints a striking picture of user habits. It becomes immediately apparent that the vast majority of users, approximately 81.3%, tend to spend a substantial portion of their daily routines in sedentary minutes activities. This is a significant concern as prolonged periods of inactivity can have adverse effects on overall health. Conversely, the chart also reveals a rather alarming statistic: a mere 1.74% of users actively engage in very active minutes.
 
 
-### Total Steps by Day of the Week
-Text
+### Total Very Active Minutes During Each Day
 
-![***Fig. 6.*** Total Steps by Day of the Week](totalstepsbydayoftheweek.png)
+In our analysis of the Bellabeat dataset, we examined the distribution of 'Very Active Minutes' across different days of the week.
 
-Text
+![***Fig. 5.*** Total Very Active Minutes by Days.](totalveryactiveminutes.png)
+
+This analysis provides valuable insights into user behavior and engagement patterns. It is evident that users tend to accumulate more 'Very Active Minutes' during weekdays, with Tuesday standing out as the days when users are most active. This may suggest that users prioritize physical activity during the early part of the week. Interestingly, the activity level starts to decline as we progress towards the weekend, with Friday and Sunday showing lower 'Very Active Minutes' on average but saturday but Fridays seeing a slight increase.
+
+
+### Total Sedentary Minutes During Each Day
+
+The bar chart displays the distribution of Sedentary Minutes. We can see it as details in ***Fig. 6*** below.
+
+![***Fig. 6.*** Total Sedentary Minutes by Days.](totalsedentaryminutes.png)
+
+The graph, our findings reveal an interesting trend where users tend to have higher 'Sedentary Minutes' during weekdays, with Tuesday showing the highest levels of sedentary behavior. This pattern may be indicative of typical workweek routines, where individuals spend prolonged periods sitting at desks or engaging in less active tasks. As the week progresses, there is a decline in sedentary behavior until the end of the week.
+
+
+### Total Steps
+
+The bar graph shows that the highest total steps were on Tuesday and decreased towards the weekend, but there was a jump on Saturday and decreased again on Sunday. We can see it as details in ***Fig. 7*** below.
+
+![***Fig. 7.*** Total Steps by Days](totalsteps.png)
+
+
+### Total Distance During Each Day and Total Steps with Total Distance by Day of Week
+
+The bar graph show with Total Distance highest on Tuesday. We can see it as details in ***Fig. 8*** below.
+
+![***Fig. 8.*** Total Distance Each Day.](totaldistance.png)
+
+The bar graph show with Total Distance and Total Steps During Each Day. 
+
+![***Fig. 9.*** Total Steps and Total Distance by Day of Week.](totalstepsanddistance.png)
 
 
 ### Relationship between Total Steps and Calories
-Text
 
-![***Fig. 7.*** Relationship between Total Steps and Calories](relationshipbetweentotalstepsandcalories.png)
+In our exploration of the Bellabeat dataset, we uncovered a fascinating relationship between 'Total Steps' and 'Calories Burned.' While the conventional wisdom suggests that more steps lead to more calories burned, our analysis revealed a counterintuitive trend. We observed that certain users, classified as sedentary due to their minimum step count, were still able to burn a significant number of calories, often falling within the range of 1500 to 2500 calories. In contrast, some more active users, who took significantly more steps, burned calories in a similar range. We can see it as details in ***Fig. 10*** below.
 
-Text
+![***Fig. 10.*** Relationship between Total Steps and Calories.](relationshipbetweentotalstepsandcalories.png)
 
-
-### Total Distance During Each day
-Text
-
-![***Fig. 8.*** Total Distance During Each day](totaldistanceduringeachday.png)
-
-Text
-
-
-### Total Distance by Month
-Text
-
-![***Fig. 9.*** Total Distance by Month](totaldistancebymonth.png)
-
-Text
-
-
-### Total Steps and Total Distance by Day of Week
-Text
-
-![***Fig. 10.*** Total Steps and Total Distance by Day of Week](totalstepsandtotaldistancebydayofweek.png)
-
-Text
-
-
-### Total Steps and Total Distance by Month
-Text
-
-![***Fig. 11.*** Total Steps and Total Distance by Month](totalstepsanddistancebymonth.png)
-
-Text
-
-
-### Average Activity Minutes by Day of Week
-Text
-
-![***Fig. 12.*** Average Activity Minutes by Day of Week](averageactivityminutesbydayofweek.png)
-
-Text
-
-
-### Total Calories During Each Day
-Text
-
-![***Fig. 13.*** Total Calories During Each Day](totalcaloriesduringeachday.png)
-
-Text
-
-
-### Total Calories by Month
-Text
-
-![***Fig. 14.*** Total Calories by Month](totalcaloriesbymonth.png)
-
-Text
+In this case we assume the possibility exists that factors beyond step count, such as metabolism, basal metabolic rate, or the intensity of activities, play a substantial role in calorie expenditure.
 
 
 ### Total Minutes A Sleep During Each Day
-Text
 
-![***Fig. 15.*** Total Minutes A Sleep During Each Day](totalminutessleepduringeachday.png)
+The bar graph show with Total Minutes A Sleep During Each Day highest on Wednesday. We can see it as details in ***Fig. 11*** below.
 
-Text
-
-
-### Total Minutes A Sleep by Month
-Text
-
-![***Fig. 16.*** Total Minutes A Sleep by Month](totalminutesasleepbymonth.png)
-
-Text
+![***Fig. 11.*** Total Minutes A Sleep During Each Day.](totalminutesasleep.png)
 
 
-### Total WeightKg During Each Day
-Text
+### Relationship between Total Steps and Calories
 
-![***Fig. 17.*** Total WeightKg During Each Day](totalweightKgduringday.png)
+Within our dataset by randomly adding the contents of the ***'Fat'*** column we obtained,
 
-Text
+```{python, Adding Data Fat, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+Fixing Error with Missing Values (NaN)
+Notes: The NA value is detected in the Fat section. I am going to fill the NA values based on the avaliable ones.
+
+weight_log_info['Fat'].value_counts()
+22.0    1
+25.0    1
+Name: Fat, dtype: int64
+
+#Replace the missing 'Fat' values by values between 22 and 25
+weight_log_info['Fat'] = weight_log_info['Fat'].apply(lambda x: random.randint(22, 25))
+
+weight_log_info['Fat'].value_counts()
+output
+23    21
+22    16
+24    16
+25    14
+Name: Fat, dtype: int64
+```
+
+output, 23 = 21 column, 22 = 16 column, 24 = 16 column, 25 = 14 column. We can see it as details in ***Fig. 12*** below.
+
+![***Fig. 12.*** Screenshot Fill NaN Values](ssaddingfatcolumn.png)
+
+Within our dataset, a noteworthy observation emerges: a majority of individuals, comprising 50.7%, are classified as being within the healthy weight range. This percentage is notably higher than the 47.8% of individuals categorized as overweight and the 1.5% who fall into the obese category. We can see it as details in ***Fig. 13*** below.
+
+![***Fig. 13.*** Percentage of People in Each BMI Category.](healthyoverobeseweight.png)
+
+This data underscores a compelling opportunity for health promotion initiatives aimed at encouraging and facilitating individuals to achieve and maintain a healthy weight. Such initiatives can play a pivotal role in enhancing overall public health by reducing the prevalence of overweight and obesity, both of which are associated with various health risks and conditions.
 
 
-### Weight Distributions (Kg)
-Text
+### Weight Distribution
 
-![***Fig. 18.*** Weight Distributions (Kg)](weightdistributions.png)
+In our analysis of the Bellabeat dataset, we generated a histogram to gain insights into the distribution of weights among users, as represented by the 'WeightKg' variable. The histogram provides a visual representation of the frequency or count of individuals falling within different weight ranges. We can see it as details in ***Fig. 14*** below.
 
-Text
+![***Fig. 14.*** Weight Distribution.](weightdistribution.png)
+
+Upon examination, we observed a bell-shaped distribution, suggesting that the majority of users have weights clustered around a central value. This central tendency in weight is a common characteristic of populations, with most individuals maintaining weights close to the average.
+
+Furthermore, the histogram revealed that the dataset includes a range of weights, from the lower end to the higher end of the scale. This diversity in weight distribution is essential for tailoring health and fitness recommendations to address the unique needs of individuals with varying weight profiles.
+
+Overall, the 'WeightKg' histogram serves as a valuable tool for understanding the weight distribution within the dataset and can inform strategies for promoting and supporting healthy weight management among users.
 
 
-### Weight (Pounds) by Report Type
-Text
 
-![***Fig. 19.*** Weight (Pounds) by Report Type](weightbyreporttype.png)
 
-Text
 
 
