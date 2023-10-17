@@ -2120,11 +2120,45 @@ document.addEventListener('DOMContentLoaded', function() {
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-HB6H559T98');
   </script>
 </head>
 
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+     if (!/posts/.test(location.pathname)) {
+       return;
+     }
+
+     var script = document.createElement("script");
+     script.src = "https://giscus.app/client.js";
+     script.setAttribute("data-repo", "agussantoso05/agussantoso05.github.io");
+     script.setAttribute("data-repo-id", "R_kgDOJxTSWw");
+     script.setAttribute("data-category", "Announcements");
+     script.setAttribute("data-category-id", "DIC_kwDOJxTSW84CZ6F9");
+     script.setAttribute("data-mapping", "pathname");
+     script.setAttribute("data-strict", "0");
+     script.setAttribute("data-reactions-enabled", "1");
+     script.setAttribute("data-emit-metadata", "0");
+     script.setAttribute("data-input-position", "top");
+     script.setAttribute("data-theme", "preferred_color_scheme");
+     script.setAttribute("data-lang", "en");
+     script.setAttribute("crossorigin", "anonymous");
+
+     /* wait for article to load, append script to article element */
+     var observer = new MutationObserver(function (mutations, observer) {
+       var article = document.querySelector("d-article");
+       if (article) {
+         observer.disconnect();
+         /* HACK: article scroll */
+         article.setAttribute("style", "overflow-y: hidden");
+         article.appendChild(script);
+       }
+     });
+
+     observer.observe(document.body, { childList: true });
+   });
+ </script>
 <script type="text/javascript" src="https://www.cookieconsent.com/releases/3.1.0/cookie-consent.js"></script>
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function () {
@@ -2712,6 +2746,26 @@ Fixing Error from data type ActivityDay –&gt; from object to date
 
 
 <!--radix_placeholder_site_after_body-->
+<style>
+.footer {
+  font-family: 'Muli', sans-serif;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+  width: 100%;
+  font-weight: 300;
+  left: 0;
+  bottom: 0;
+  background-color: #d9d7d7;
+}
+</style>
+
+<div class="footer"> 
+  
+  <hr> 
+  <p> © Agus Santoso, 2023</p> 
+  <p> Powered by <img class="logo-rstudio" src = "https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png"> & <img class="logo-github" src = "https://cdn-icons-png.flaticon.com/512/25/25231.png"</p>
+</div>
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
 <div class="appendix-bottom">

@@ -33,6 +33,8 @@ output:
     includes:
       in_header:
         - _includes/head.html
+        - assets/giscus.html
+      after_body: assets/footer.html
         
 cookie_consent:
   style: simple
