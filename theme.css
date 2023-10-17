@@ -59,7 +59,7 @@ d-appendix {
   --text-color:       rgba(255, 255, 255, 0.8);
   --text-size:        15px;
   --hover-color:      white;
-  --bkgd-color:       #152a4d;
+  --bkgd-color:       #0F2E3D;
 }
 
 
@@ -67,7 +67,7 @@ d-appendix {
   --text-color:       rgba(255, 255, 255, 0.8);
   --text-size:        15px;
   --hover-color:      white;
-  --bkgd-color:       #74a08a;
+  --bkgd-color:       #567e91;
 }
 
 /*-- Additional custom styles --*/
@@ -100,16 +100,16 @@ d-code {
   width: 100%;
   left: 0;
   bottom: 0;
-  background-color: #d9d7d7;
+  background-color: #567e91;
 }
 
 .logo-rstudio {
-  width: 2%;
+  max-width: 6%;
   margin: 0px !important;
 }
 
 .logo-github {
-  width: 1.5%;
+  max-width: 2%;
   margin: 0px !important;
 }
 
@@ -197,18 +197,18 @@ code {
 
 /*----------------NAVBAR ---------------*/
 .navbar-default {
-    background-color: #141c25f2;
+    background-color: #0F2E3D;
 }
 
 .navbar-default .navbar-nav>.open>a, 
 .navbar-default .navbar-nav>.active>a, 
 a.dropdown-toggle:hover {
-  background-color: #141c25 !important;
+  background-color: #0F2E3D !important;
 }
 
 /* Dropdown menu color */
 .navbar-default .dropdown-menu {
-  background-color: #141c25;
+  background-color: #0F2E3D;
 }
 
 /* Dropdown menu hover color */
@@ -223,5 +223,5 @@ a.dropdown-toggle:hover {
 .navbar-default .navbar-nav>li>a:hover, 
 a.navbar-brand:hover {
   color: #ffffffab !important;
-  background-color: #141c25;
+  background-color: #0F2E3D;
 }

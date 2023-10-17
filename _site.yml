@@ -1,5 +1,6 @@
 name: "website"
 title: "Agus Santoso"
+theme: theme.css
 favicon: images/favicon.ico
 description: |
   Agus Santoso
@@ -35,7 +36,10 @@ output:
         - _includes/head.html
         - assets/giscus.html
       after_body: assets/footer.html
-        
+
+rss:
+  full_content: true
+  
 cookie_consent:
   style: simple
   type: express
