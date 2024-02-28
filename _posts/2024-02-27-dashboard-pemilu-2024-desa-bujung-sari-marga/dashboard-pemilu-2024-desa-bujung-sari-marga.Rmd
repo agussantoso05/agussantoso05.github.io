@@ -1,5 +1,5 @@
 ---
-title: "Dashboard Pemilu 2024 Desa Bujung Sari Marga"
+title: "Election Dashboard for Bujung Sari Marga Village"
 description: |
   The 2024 Election Dashboard for Bujung Sari Marga Village is an interactive platform presenting the latest data and information related to the 2024 General Election in Bujung Sari Marga Village. With an informative and user-friendly interface, this dashboard allows residents to monitor the progress, results, and data analysis of the election after the counting process is completed, supporting active participation of the community in the local democratic process.
 author:
@@ -10,7 +10,7 @@ categories:
   - Google Data Studio
   - Election Data
   - Data Visualizations
-preview: mt-peopleteam.png
+preview: surasulu2024.jpeg
 output:
     distill::distill_article:
       self_contained: false
