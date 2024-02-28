@@ -10,7 +10,7 @@ links:
   - label: '`r fontawesome::fa("envelope", height = "25px")`'
     url: "mailto:agus.santoso050899@gmail.com"
   - label: Resume
-    url: "https://docs.google.com/document/d/1BYioB3YamrWlxux86CnpADxFsbHZ-jgxyscBvAUX3M4/edit"
+    url: "https://docs.google.com/document/d/1a93y9VgMrn6QIFhziIleD08C7wTGVe8AU0LndxzohI8/edit?usp=sharing"
 site: distill::distill_website
 output:
   postcards::trestles

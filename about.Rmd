@@ -16,7 +16,7 @@ Welcome to my personal website! I currently work as a Data Analyst at Campaign.c
 ```{r, resume icon, echo=FALSE}
 icon_link(
     text = "Resume",
-    url  = "https://docs.google.com/document/d/1BYioB3YamrWlxux86CnpADxFsbHZ-jgxyscBvAUX3M4/edit?usp=sharing"
+    url  = "https://docs.google.com/document/d/1a93y9VgMrn6QIFhziIleD08C7wTGVe8AU0LndxzohI8/edit?usp=sharing"
 )
 ```
 </center>
