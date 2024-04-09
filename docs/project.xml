@@ -12,113 +12,19 @@
       <link>https://agussantoso05.github.io/index.html</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>2024-04-08</lastBuildDate>
+    <lastBuildDate>2024-04-09</lastBuildDate>
     <item>
       <title>Self-Service Analytics Platform for Enhanced User Maintenance and Blasting Activity Efficiency</title>
       <dc:creator>Agus Santoso</dc:creator>
       <link>https://agussantoso05.github.io/index.html/posts/2024-04-09-dashboard-self-service-analytics-user-maintenance-and-blasting-activity</link>
-      <description>
-
-
-&lt;h2 id="introductions"&gt;Introductions&lt;/h2&gt;
-&lt;p&gt;In our current workflow, data updates are managed weekly by the Data
-Team, utilizing a spreadsheet and Slack channel for distribution. This
-decentralized process places a heavy reliance on the Data Team’s
-workload, hindering efficiency and timely decision-making. Addressing
-this challenge is crucial to expedite our business decisions. Thus, the
-question arises: How can we streamline routine tasks to enhance
-efficiency and accessibility for stakeholders? It’s worth noting that
-the need for user maintenance data is crucially required by the User
-Relations Team, intensifying the urgency for a solution. The answer lies
-in implementing a Self-Service Analytics (SSA) platform. SSA offers an
-autonomous solution, enabling users to independently gather and analyze
-data, thereby facilitating quicker decision-making processes.&lt;/p&gt;
-&lt;h2 id="what-tools-to-use"&gt;What Tools To Use&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Looker Studio / Google Data Studio&lt;/li&gt;
-&lt;li&gt;MySQL&lt;/li&gt;
-&lt;li&gt;DBeaver&lt;/li&gt;
-&lt;li&gt;Google Sheet / Spreadsheet&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="preparations"&gt;Preparations&lt;/h2&gt;
-&lt;p&gt;Here, I want to describe a few tools in this analysis:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Connect the data from MySQL to Looker Studio with Custom
-Query&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Tools/Functions we use:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Filtering&lt;/li&gt;
-&lt;li&gt;Tabular Data&lt;/li&gt;
-&lt;li&gt;Data Viz&lt;/li&gt;
-&lt;li&gt;Embed Report&lt;/li&gt;
-&lt;li&gt;etc&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="dashboard-visualizations"&gt;Dashboard Visualizations&lt;/h2&gt;
-&lt;p&gt;The dashboard consists of five unique pages, each with a specific
-name and function to enhance data understanding and decision-making.&lt;/p&gt;
-&lt;h3 id="guideline-page"&gt;Guideline Page:&lt;/h3&gt;
-&lt;p&gt;This page serves as a general guide for using the dashboard,
-providing instructions and tips for navigation, as well as further
-understanding of the presented data. We can see it as a preview in
-&lt;strong&gt;&lt;em&gt;Fig. 1&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
-&lt;div class="float"&gt;
-&lt;img src="guidline.png" alt="Fig. 1. Guideline." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 1.&lt;/em&gt;&lt;/strong&gt;
-Guideline.&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id="realtime---summary-viz"&gt;Realtime - Summary Viz:&lt;/h3&gt;
-&lt;p&gt;This page presents brief visualizations of real-time data related to
-user activities and drilling, allowing stakeholders to quickly grasp the
-big picture. We can see it as a preview in &lt;strong&gt;&lt;em&gt;Fig.
-2&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
-&lt;div class="float"&gt;
-&lt;img src="summaryviz.png"
-alt="Fig. 2. Realtime - Summary Visualization." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 2.&lt;/em&gt;&lt;/strong&gt; Realtime -
-Summary Visualization.&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id="realtime---tabular-data-user"&gt;Realtime - Tabular Data User:&lt;/h3&gt;
-&lt;p&gt;On this page, real-time tabular data related to users is presented,
-enabling stakeholders to directly examine detailed data. We can see it
-as a preview in &lt;strong&gt;&lt;em&gt;Fig. 3&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
-&lt;div class="float"&gt;
-&lt;img src="tabularuser.png"
-alt="Fig. 3. Realtime - Tabular Data User." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 3.&lt;/em&gt;&lt;/strong&gt; Realtime -
-Tabular Data User.&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id="detail---profile-user"&gt;Detail - Profile User&lt;/h3&gt;
-&lt;p&gt;This page displays detailed profiles of users, including their
-history, preferences, and performance, providing deeper insights into
-specific users. We can see it as a preview in &lt;strong&gt;&lt;em&gt;Fig.
-4&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
-&lt;div class="float"&gt;
-&lt;img src="profileuser.png" alt="Fig. 4. Detail - Profile User." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 4.&lt;/em&gt;&lt;/strong&gt; Detail -
-Profile User.&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id="glossary"&gt;Glossary:&lt;/h3&gt;
-&lt;p&gt;This page serves as a reference for stakeholders to understand the
-terms and concepts used in the dashboard. We can see it as a preview in
-&lt;strong&gt;&lt;em&gt;Fig. 5&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
-&lt;div class="float"&gt;
-&lt;img src="glossary.png" alt="Fig. 5. Glossary." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 5.&lt;/em&gt;&lt;/strong&gt;
-Glossary.&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Each page in the dashboard has been carefully designed to meet
-specific analytical needs, empowering stakeholders with actionable
-insights and facilitating data-driven decision-making.&lt;/p&gt;
-&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>d7dbd4a45086ab25702a9a89692c196b</distill:md5>
+      <description>This Self-Service Analytics Platform is designed to provide efficient solutions for user maintenance and blasting/drilling activities. With this tool, users can easily access and analyze relevant data, enabling them to make timely and effective decisions. With a focus on enhancing efficiency, the platform not only offers deep insights into user maintenance performance but also enables optimization of blasting activities. Thus, the project aims to deliver a transformative solution for organizations to manage their operations more efficiently and effectively.</description>
       <category>Looker Studio</category>
       <category>Google Data Studio</category>
       <category>User Maintenance Data</category>
       <category>Dashboard</category>
       <category>Data Visualizations</category>
       <guid>https://agussantoso05.github.io/index.html/posts/2024-04-09-dashboard-self-service-analytics-user-maintenance-and-blasting-activity</guid>
-      <pubDate>2024-04-08</pubDate>
+      <pubDate>2024-04-09</pubDate>
       <media:content url="https://agussantoso05.github.io/index.html/posts/2024-04-09-dashboard-self-service-analytics-user-maintenance-and-blasting-activity/summaryviz.png" medium="image" type="image/png" width="1197" height="894"/>
     </item>
     <item>
