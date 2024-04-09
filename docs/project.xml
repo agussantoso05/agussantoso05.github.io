@@ -12,151 +12,127 @@
       <link>https://agussantoso05.github.io/index.html</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>2024-02-26</lastBuildDate>
+    <lastBuildDate>2024-04-08</lastBuildDate>
     <item>
-      <title>Transformative 2024 Election Dashboard for Bujung Sari Marga Village</title>
+      <title>Self-Service Analytics Platform for Enhanced User Maintenance and Blasting Activity Efficiency</title>
       <dc:creator>Agus Santoso</dc:creator>
-      <link>https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga</link>
+      <link>https://agussantoso05.github.io/index.html/posts/2024-04-09-dashboard-self-service-analytics-user-maintenance-and-blasting-activity</link>
       <description>
 
 
 &lt;h2 id="introductions"&gt;Introductions&lt;/h2&gt;
-&lt;p&gt;In response to the need for timely and transparent information
-regarding the 2024 General Election in Bujung Sari Marga Village, the
-creation of the Election Dashboard has been initiated. This interactive
-platform aims to provide residents with up-to-date data and insights
-into the election process, enabling them to monitor results and analyze
-voting trends after the counting process is completed. The user-friendly
-interface is designed to facilitate active community engagement in the
-democratic process at the local level.&lt;/p&gt;
+&lt;p&gt;In our current workflow, data updates are managed weekly by the Data
+Team, utilizing a spreadsheet and Slack channel for distribution. This
+decentralized process places a heavy reliance on the Data Team’s
+workload, hindering efficiency and timely decision-making. Addressing
+this challenge is crucial to expedite our business decisions. Thus, the
+question arises: How can we streamline routine tasks to enhance
+efficiency and accessibility for stakeholders? It’s worth noting that
+the need for user maintenance data is crucially required by the User
+Relations Team, intensifying the urgency for a solution. The answer lies
+in implementing a Self-Service Analytics (SSA) platform. SSA offers an
+autonomous solution, enabling users to independently gather and analyze
+data, thereby facilitating quicker decision-making processes.&lt;/p&gt;
 &lt;h2 id="what-tools-to-use"&gt;What Tools To Use&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Looker Studio&lt;/li&gt;
-&lt;li&gt;Spreadsheets&lt;/li&gt;
+&lt;li&gt;Looker Studio / Google Data Studio&lt;/li&gt;
+&lt;li&gt;MySQL&lt;/li&gt;
+&lt;li&gt;DBeaver&lt;/li&gt;
+&lt;li&gt;Google Sheet / Spreadsheet&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="preparations"&gt;Preparations&lt;/h2&gt;
 &lt;p&gt;Here, I want to describe a few tools in this analysis:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Connect the data from Spreadsheets to Looker Studio&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Connect the data from MySQL to Looker Studio with Custom
+Query&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Tools/Functions we use:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Filtering&lt;/li&gt;
 &lt;li&gt;Tabular Data&lt;/li&gt;
 &lt;li&gt;Data Viz&lt;/li&gt;
+&lt;li&gt;Embed Report&lt;/li&gt;
 &lt;li&gt;etc&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="visualizations-and-analysis"&gt;Visualizations and Analysis&lt;/h2&gt;
-&lt;p&gt;Data visualization on the dashboard is seamlessly presented through
-intuitive graphs, charts, and interactive visual elements. These visual
-representations offer a clear and comprehensive view of the 2024 General
-Election data for Bujung Sari Marga Village. Users can easily interpret
-trends, analyze voting patterns, and gain valuable insights, fostering a
-deeper understanding of the electoral dynamics within the community. The
-dashboard categorizes data into five distinct types of votes, starting
-from the Presidential and Vice Presidential (PWP) election, followed by
-the House of Representatives (DPR RI), Regional Representative Council
-(DPD), Provincial Legislative Council (DPRD-Provinsi), and District/City
-Legislative Council (DPRD-Kabupaten/Kota), providing a detailed
-breakdown of the electoral process.&lt;/p&gt;
-&lt;h3
-id="dashboard-presidential-and-vice-presidential-pwp-election"&gt;Dashboard
-Presidential and Vice Presidential (PWP) Election&lt;/h3&gt;
-&lt;p&gt;The dashboard provides a detailed analysis of votes cast for the
-Presidential and Vice Presidential candidates, offering insights into
-the preferences and trends shaping the leadership choices within Bujung
-Sari Marga Village. We can see it as &lt;a
-href="https://lookerstudio.google.com/reporting/0ecbd21b-6e6f-44f7-8968-9db0494af136/page/IIcqD"&gt;dashboard
-details&lt;/a&gt; and preview in &lt;strong&gt;&lt;em&gt;Fig. 1&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
+&lt;h2 id="dashboard-visualizations"&gt;Dashboard Visualizations&lt;/h2&gt;
+&lt;p&gt;The dashboard consists of five unique pages, each with a specific
+name and function to enhance data understanding and decision-making.&lt;/p&gt;
+&lt;h3 id="guideline-page"&gt;Guideline Page:&lt;/h3&gt;
+&lt;p&gt;This page serves as a general guide for using the dashboard,
+providing instructions and tips for navigation, as well as further
+understanding of the presented data. We can see it as a preview in
+&lt;strong&gt;&lt;em&gt;Fig. 1&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
 &lt;div class="float"&gt;
-&lt;img src="https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga/ppwp.png"
-alt="Fig. 1. Presidential and Vice Presidential (PWP)." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 1.&lt;/em&gt;&lt;/strong&gt; Presidential
-and Vice Presidential (PWP).&lt;/div&gt;
+&lt;img src="guidline.png" alt="Fig. 1. Guideline." /&gt;
+&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 1.&lt;/em&gt;&lt;/strong&gt;
+Guideline.&lt;/div&gt;
 &lt;/div&gt;
-&lt;h3 id="dashboard-house-of-representatives-dpr-ri"&gt;Dashboard House of
-Representatives (DPR RI)&lt;/h3&gt;
-&lt;p&gt;Users can explore the data related to the election of representatives
-to the national House of Representatives, allowing for a comprehensive
-understanding of the political landscape and representation preferences
-at the national level. We can see it as &lt;a
-href="https://lookerstudio.google.com/reporting/31ee50f2-14e0-4c8b-a9e9-300ebaba6764/page/p_rrb75boned"&gt;dashboard
-details&lt;/a&gt; and preview in &lt;strong&gt;&lt;em&gt;Fig. 2&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
+&lt;h3 id="realtime---summary-viz"&gt;Realtime - Summary Viz:&lt;/h3&gt;
+&lt;p&gt;This page presents brief visualizations of real-time data related to
+user activities and drilling, allowing stakeholders to quickly grasp the
+big picture. We can see it as a preview in &lt;strong&gt;&lt;em&gt;Fig.
+2&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
 &lt;div class="float"&gt;
-&lt;img src="https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga/pdprri.png"
-alt="Fig. 2. Dashboard House of Representatives (DPR RI)." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 2.&lt;/em&gt;&lt;/strong&gt; Dashboard
-House of Representatives (DPR RI).&lt;/div&gt;
+&lt;img src="summaryviz.png"
+alt="Fig. 2. Realtime - Summary Visualization." /&gt;
+&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 2.&lt;/em&gt;&lt;/strong&gt; Realtime -
+Summary Visualization.&lt;/div&gt;
 &lt;/div&gt;
-&lt;h3 id="dashboard-regional-representative-council-dpd"&gt;Dashboard
-Regional Representative Council (DPD)&lt;/h3&gt;
-&lt;p&gt;The dashboard highlights the voting patterns for the Regional
-Representative Council, providing valuable insights into the community’s
-choices for representatives at the regional level. We can see it as &lt;a
-href="https://lookerstudio.google.com/reporting/c8e04eb1-44f8-4399-b68f-9c0db17061ce/page/HacqD"&gt;dashboard
-details&lt;/a&gt; and preview in &lt;strong&gt;&lt;em&gt;Fig. 3&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
+&lt;h3 id="realtime---tabular-data-user"&gt;Realtime - Tabular Data User:&lt;/h3&gt;
+&lt;p&gt;On this page, real-time tabular data related to users is presented,
+enabling stakeholders to directly examine detailed data. We can see it
+as a preview in &lt;strong&gt;&lt;em&gt;Fig. 3&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
 &lt;div class="float"&gt;
-&lt;img src="https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga/pdpd.png"
-alt="Fig. 3. Regional Representative Council (DPD)." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 3.&lt;/em&gt;&lt;/strong&gt; Regional
-Representative Council (DPD).&lt;/div&gt;
+&lt;img src="tabularuser.png"
+alt="Fig. 3. Realtime - Tabular Data User." /&gt;
+&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 3.&lt;/em&gt;&lt;/strong&gt; Realtime -
+Tabular Data User.&lt;/div&gt;
 &lt;/div&gt;
-&lt;h3
-id="dashboard-provincial-legislative-council-dprd-provinsi"&gt;Dashboard
-Provincial Legislative Council (DPRD-Provinsi)&lt;/h3&gt;
-&lt;p&gt;Detailed visualizations on the dashboard illustrate the electoral
-dynamics for the Provincial Legislative Council, offering a breakdown of
-votes and preferences at the provincial level. We can see it as &lt;a
-href="https://lookerstudio.google.com/u/0/reporting/96740d84-6da0-4c03-b735-46e3768b8521/page/p_rrb75boned"&gt;dashboard
-details&lt;/a&gt; and preview in &lt;strong&gt;&lt;em&gt;Fig. 4&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
+&lt;h3 id="detail---profile-user"&gt;Detail - Profile User&lt;/h3&gt;
+&lt;p&gt;This page displays detailed profiles of users, including their
+history, preferences, and performance, providing deeper insights into
+specific users. We can see it as a preview in &lt;strong&gt;&lt;em&gt;Fig.
+4&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
 &lt;div class="float"&gt;
-&lt;img src="https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga/pdprd-prov.png"
-alt="Fig. 4. Provincial Legislative Council (DPRD-Provinsi)." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 4.&lt;/em&gt;&lt;/strong&gt; Provincial
-Legislative Council (DPRD-Provinsi).&lt;/div&gt;
+&lt;img src="profileuser.png" alt="Fig. 4. Detail - Profile User." /&gt;
+&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 4.&lt;/em&gt;&lt;/strong&gt; Detail -
+Profile User.&lt;/div&gt;
 &lt;/div&gt;
-&lt;h3
-id="dashboard-districtcity-legislative-council-dprd-kabupatenkota"&gt;Dashboard
-District/City Legislative Council (DPRD-Kabupaten/Kota)&lt;/h3&gt;
-&lt;p&gt;For a localized perspective, the dashboard presents a comprehensive
-breakdown of votes for the District/City Legislative Council, enabling
-residents to examine the choices and trends in their specific
-administrative areas. We can see it as &lt;a
-href="https://lookerstudio.google.com/reporting/d556b2c1-663d-4447-9939-765a80a07a10/page/p_rrb75boned"&gt;dashboard
-details&lt;/a&gt; and preview in &lt;strong&gt;&lt;em&gt;Fig. 5&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
+&lt;h3 id="glossary"&gt;Glossary:&lt;/h3&gt;
+&lt;p&gt;This page serves as a reference for stakeholders to understand the
+terms and concepts used in the dashboard. We can see it as a preview in
+&lt;strong&gt;&lt;em&gt;Fig. 5&lt;/em&gt;&lt;/strong&gt; below.&lt;/p&gt;
 &lt;div class="float"&gt;
-&lt;img src="https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga/pdprd-kabko.png"
-alt="Fig. 5. District/City Legislative Council (DPRD-Kabupaten/Kota)." /&gt;
-&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 5.&lt;/em&gt;&lt;/strong&gt; District/City
-Legislative Council (DPRD-Kabupaten/Kota).&lt;/div&gt;
+&lt;img src="glossary.png" alt="Fig. 5. Glossary." /&gt;
+&lt;div class="figcaption"&gt;&lt;strong&gt;&lt;em&gt;Fig. 5.&lt;/em&gt;&lt;/strong&gt;
+Glossary.&lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;As we conclude this interactive journey through the 2024 Election
-Dashboard for Bujung Sari Marga Village, we invite you to explore the
-rich tapestry of data and insights it offers. The breakdown of votes
-across the five categories, from the Presidential and Vice Presidential
-election to the District/City Legislative Council, provides a nuanced
-understanding of our community’s democratic choices. This platform is
-not just a tool for post-election analysis but a testament to our
-commitment to transparency and informed civic participation. As we
-navigate through the visualizations, may we gain a deeper appreciation
-for the diverse voices that shape our local democracy. Your engagement
-with this dashboard contributes to the collective knowledge and
-strengthens the foundation of our shared democratic values. Thank you
-for being an active participant in shaping the future of Bujung Sari
-Marga Village.&lt;/p&gt;
-&lt;center&gt;
-&lt;strong&gt;THANK YOU 🙌&lt;/strong&gt;
-&lt;/center&gt;
+&lt;p&gt;Each page in the dashboard has been carefully designed to meet
+specific analytical needs, empowering stakeholders with actionable
+insights and facilitating data-driven decision-making.&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>9a3def502f0d1af68e1d8119656d4d2d</distill:md5>
+      <distill:md5>d7dbd4a45086ab25702a9a89692c196b</distill:md5>
+      <category>Looker Studio</category>
+      <category>Google Data Studio</category>
+      <category>User Maintenance Data</category>
+      <category>Dashboard</category>
+      <category>Data Visualizations</category>
+      <guid>https://agussantoso05.github.io/index.html/posts/2024-04-09-dashboard-self-service-analytics-user-maintenance-and-blasting-activity</guid>
+      <pubDate>2024-04-08</pubDate>
+      <media:content url="https://agussantoso05.github.io/index.html/posts/2024-04-09-dashboard-self-service-analytics-user-maintenance-and-blasting-activity/summaryviz.png" medium="image" type="image/png" width="1197" height="894"/>
+    </item>
+    <item>
+      <title>Transformative 2024 Election Dashboard for Bujung Sari Marga Village</title>
+      <dc:creator>Agus Santoso</dc:creator>
+      <link>https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga</link>
+      <description>The 2024 Election Dashboard for Bujung Sari Marga Village is an interactive platform presenting the latest data and information related to the 2024 General Election in Bujung Sari Marga Village. With an informative and user-friendly interface, this dashboard allows residents to monitor the progress, results, and data analysis of the election after the counting process is completed, supporting active participation of the community in the local democratic process.</description>
       <category>Looker Studio</category>
       <category>Google Data Studio</category>
       <category>Election Data</category>
       <category>Data Visualizations</category>
       <category>Dashboard</category>
       <guid>https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga</guid>
-      <pubDate>2024-02-26</pubDate>
+      <pubDate>2024-02-27</pubDate>
       <media:content url="https://agussantoso05.github.io/index.html/posts/2024-02-27-dashboard-pemilu-2024-desa-bujung-sari-marga/surasulu2024.jpeg" medium="image" type="image/jpeg"/>
     </item>
     <item>
