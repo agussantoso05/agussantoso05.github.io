@@ -10,6 +10,7 @@ categories:
   - Google Data Studio
   - Election Data
   - Data Visualizations
+  - Dashboard
 preview: surasulu2024.jpeg
 output:
     distill::distill_article:
